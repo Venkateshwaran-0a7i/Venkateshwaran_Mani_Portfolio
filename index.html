@@ -200,6 +200,14 @@
             position: relative;
             z-index: 1;
         }
+
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+        .animate-spin-slow {
+            animation: spin-slow 3s linear infinite;
+        }
     </style>
 </head>
 <body class="bg-black">
@@ -477,68 +485,77 @@
     <section id="contact" class="py-16 bg-black my-10 cyberpunk-scroll">
         <div class="container mx-auto px-4">
             <h2 class="section-title text-3xl font-bold mb-12 text-center">Let's Connect</h2>
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-1/2 bg-gray-900 p-8 rounded-lg retro-border">
-                    <h3 class="text-xl font-bold mb-6 text-gray-100">Get In Touch</h3>
-                    <form>
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium mb-1 text-gray-200">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-gray-100 focus:ring-2 focus:ring-red-600 focus:border-transparent">
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium mb-1 text-gray-200">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-gray-100 focus:ring-2 focus:ring-red-600 focus:border-transparent">
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-sm font-medium mb-1 text-gray-200">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-black text-gray-100 focus:ring-2 focus:ring-red-600 focus:border-transparent"></textarea>
-                        </div>
-                        <button type="submit" class="btn-3d bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition transform hover:scale-105 w-full">Send Message</button>
-                    </form>
-                </div>
-                <div class="md:w-1/2 space-y-6">
-                    <div class="bg-gray-900 p-6 rounded-lg retro-border">
-                        <h3 class="text-xl font-bold mb-4 text-gray-100">Contact Information</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope text-red-600 mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-gray-100">Email</h4>
-                                    <a href="mailto:venkateshwaran0720@gmail.com" class="text-sm text-gray-400 hover:text-white">venkateshwaran0720@gmail.com</a>
-                                </div>
+            <div class="flex flex-col items-center justify-center gap-8">
+                <div class="bg-gray-900 p-8 rounded-lg retro-border w-full max-w-xl flex flex-col items-center">
+                    <h3 class="text-xl font-bold mb-4 text-gray-100 flex items-center justify-center gap-2">
+                        <span>Contact Information</span>
+                        <!-- Tech icon animation -->
+                        <span class="relative flex h-6 w-6">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-6 w-6 bg-gray-800 items-center justify-center">
+                                <i class="fas fa-microchip text-white text-sm"></i>
+                            </span>
+                        </span>
+                    </h3>
+                    <div class="space-y-4 w-full">
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-red-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-100">Email</h4>
+                                <a href="mailto:venkateshwaran0720@gmail.com" class="text-sm text-gray-400 hover:text-white">venkateshwaran0720@gmail.com</a>
                             </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-phone text-red-600 mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-gray-100">Phone</h4>
-                                    <a href="tel:+919655724769" class="text-sm text-gray-400 hover:text-white">+91 9655724769</a>
-                                </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone text-red-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-100">Phone</h4>
+                                <a href="tel:+919655724769" class="text-sm text-gray-400 hover:text-white">+91 9655724769</a>
                             </div>
-                            <div class="flex items-start">
-                                <i class="fab fa-linkedin text-red-600 mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-gray-100">LinkedIn</h4>
-                                    <a href="https://www.linkedin.com/in/venkateshwaran-mani-9973322a7" target="_blank" class="text-sm text-gray-400 hover:text-white">linkedin.com/in/venkateshwaran-mani</a>
-                                </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fab fa-linkedin text-red-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-100">LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/venkateshwaran-mani-9973322a7" target="_blank" class="text-sm text-gray-400 hover:text-white">linkedin.com/in/venkateshwaran-mani</a>
                             </div>
-                            <div class="flex items-start">
-                                <i class="fab fa-github text-red-600 mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-gray-100">GitHub</h4>
-                                    <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="text-sm text-gray-400 hover:text-white">github.com/Venkateshwaran-0a7i</a>
-                                </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fab fa-github text-red-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-100">GitHub</h4>
+                                <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="text-sm text-gray-400 hover:text-white">github.com/Venkateshwaran-0a7i</a>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-900 p-6 rounded-lg retro-border">
-                        <h3 class="text-xl font-bold mb-4 text-gray-100">Job Roles</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Data Analytics</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Business Analytics</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">BI Developer</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Data Scientist</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">HR Analytics</span>
+                    <div class="mt-8 flex justify-center w-full">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQMQt0HOppaLv6lRXc5aIM6RSDJKyWWzr5KLvJrf2s23Yziw/viewform?usp=sf_link"
+                           target="_blank"
+                           class="btn-3d bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg transition transform hover:scale-105 text-lg font-semibold flex items-center justify-center w-full text-center gap-2">
+                            <i class="fas fa-paper-plane animate-bounce"></i> Get In Touch
+                        </a>
+                    </div>
+                    <!-- Tech context animation below button -->
+                    <div class="mt-8 flex flex-col items-center">
+                        <div class="flex gap-4">
+                            <i class="fas fa-server text-gray-400 animate-spin-slow text-2xl"></i>
+                            <i class="fas fa-code text-gray-400 animate-pulse text-2xl"></i>
+                            <i class="fas fa-database text-gray-400 animate-bounce text-2xl"></i>
+                            <i class="fas fa-network-wired text-gray-400 animate-spin text-2xl"></i>
                         </div>
+                        <p class="mt-4 text-gray-400 text-sm animate-fadeIn text-center">
+                            <span class="hidden sm:inline">Connecting data, code, and people in real time.</span>
+                            <span class="inline sm:hidden">Tech at your fingertips.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg retro-border w-full max-w-xl mt-8">
+                    <h3 class="text-xl font-bold mb-4 text-gray-100">Job Roles</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Data Analytics</span>
+                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Business Analytics</span>
+                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">BI Developer</span>
+                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Data Scientist</span>
+                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">HR Analytics</span>
                     </div>
                 </div>
             </div>
