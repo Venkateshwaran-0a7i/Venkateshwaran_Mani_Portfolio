@@ -213,6 +213,15 @@
             background-color: transparent !important;
             border-color: rgba(229,231,235,0.9) !important;
         }
+
+        /* Skills & Contact: force transparent backgrounds so tech-bg shows through */
+        #skills, #contact { background-color: transparent !important; }
+        #skills .retro-border, #contact .retro-border,
+        #skills .skill-card, #contact .skill-card,
+        #skills .retro-border *, #contact .retro-border * {
+            background-color: transparent !important;
+            border-color: rgba(229,231,235,0.9) !important;
+        }
     </style>
 </head>
 <body class="bg-black">
@@ -290,32 +299,32 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-black my-10 cyberpunk-scroll">
+    <section id="skills" class="py-16 bg-transparent my-10 cyberpunk-scroll">
         <div class="container mx-auto px-4">
             <h2 class="section-title text-3xl font-bold mb-12 text-center">Skills & Technologies</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-gray-900 p-6 rounded-lg retro-border">
+                <div class="bg-transparent p-6 rounded-lg retro-border">
                     <h3 class="text-xl font-bold mb-4 text-gray-100 flex items-center">
                         <i class="fas fa-laptop-code mr-2"></i> Core Technical Skills
                     </h3>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="skill-card bg-black text-gray-200 p-4 rounded-lg border-l-4 border-gray-200 transition duration-300">
+                        <div class="skill-card bg-transparent text-gray-200 p-4 rounded-lg border-l-4 border-gray-200 transition duration-300">
                             <h4 class="font-bold mb-2">Programming</h4>
                             <p class="text-sm">Python (Pandas, NumPy, Scikit-learn), R</p>
                         </div>
-                        <div class="skill-card bg-black text-gray-200 p-4 rounded-lg border-l-4 border-gray-200 transition duration-300">
+                        <div class="skill-card bg-transparent text-gray-200 p-4 rounded-lg border-l-4 border-gray-200 transition duration-300">
                             <h4 class="font-bold mb-2">Data Visualization</h4>
                             <p class="text-sm">Power BI, Tableau, Matplotlib</p>
                         </div>
-                        <div class="skill-card bg-black text-gray-200 p-4 rounded-lg border-l-4 border-gray-200 transition duration-300">
+                        <div class="skill-card bg-transparent text-gray-200 p-4 rounded-lg border-l-4 border-gray-200 transition duration-300">
                             <h4 class="font-bold mb-2">Database & Querying</h4>
                             <p class="text-sm">SQL, Excel, Google Sheets, GCP</p>
                         </div>
-                        <div class="skill-card bg-black text-gray-200 p-4 rounded-lg border-l-4 border-gray-200 transition duration-300">
+                        <div class="skill-card bg-transparent text-gray-200 p-4 rounded-lg border-l-4 border-gray-200 transition duration-300">
                             <h4 class="font-bold mb-2">Statistical Methods</h4>
                             <p class="text-sm">Correlation Analysis, Predictive Modeling</p>
                         </div>
-                        <div class="skill-card bg-black text-gray-200 p-4 rounded-lg border-l-4 border-gray-200 transition duration-300">
+                        <div class="skill-card bg-transparent text-gray-200 p-4 rounded-lg border-l-4 border-gray-200 transition duration-300">
                             <h4 class="font-bold mb-2">Data Processes</h4>
                             <p class="text-sm">EDA, Data Cleaning, Data Aggregation</p>
                         </div>
@@ -325,19 +334,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-900 p-6 rounded-lg retro-border">
+                <div class="bg-transparent p-6 rounded-lg retro-border">
                     <h3 class="text-xl font-bold mb-4 text-gray-100 flex items-center">
                         <i class="fas fa-user-tie mr-2"></i> Soft Skills
                     </h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Communication</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Problem Solving</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Critical Thinking</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Collaboration</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Data Storytelling</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Adaptability</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Business Acumen</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Process Mapping</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Communication</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Problem Solving</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Critical Thinking</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Collaboration</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Data Storytelling</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Adaptability</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Business Acumen</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Process Mapping</span>
                     </div>
                     <h3 class="text-xl font-bold mt-6 mb-4 text-gray-100 flex items-center">
                         <i class="fas fa-graduation-cap mr-2"></i> Education
@@ -782,17 +791,17 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-black my-10 cyberpunk-scroll">
+    <section id="contact" class="py-16 bg-transparent my-10 cyberpunk-scroll">
         <div class="container mx-auto px-4">
             <h2 class="section-title text-3xl font-bold mb-12 text-center">Let's Connect</h2>
             <div class="flex flex-col items-center justify-center gap-8">
-                <div class="bg-gray-900 p-8 rounded-lg retro-border w-full max-w-xl flex flex-col items-center">
+                <div class="bg-transparent p-8 rounded-lg retro-border w-full max-w-xl flex flex-col items-center">
                     <h3 class="text-xl font-bold mb-4 text-gray-100 flex items-center justify-center gap-2">
                         <span>Contact Information</span>
                         <!-- Tech icon animation -->
                         <span class="relative flex h-6 w-6">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-6 w-6 bg-gray-800 items-center justify-center">
+                            <span class="relative inline-flex rounded-full h-6 w-6 bg-transparent items-center justify-center">
                                 <i class="fas fa-microchip text-white text-sm"></i>
                             </span>
                         </span>
@@ -848,14 +857,14 @@
                         </p>
                     </div>
                 </div>
-                <div class="bg-gray-900 p-6 rounded-lg retro-border w-full max-w-xl mt-8">
+                <div class="bg-transparent p-6 rounded-lg retro-border w-full max-w-xl mt-8">
                     <h3 class="text-xl font-bold mb-4 text-gray-100">Job Roles</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Data Analytics</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Business Analytics</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">BI Developer</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">Data Scientist</span>
-                        <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">HR Analytics</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Data Analytics</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Business Analytics</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">BI Developer</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">Data Scientist</span>
+                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-full text-sm">HR Analytics</span>
                     </div>
                 </div>
             </div>
