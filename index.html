@@ -208,6 +208,11 @@
         .animate-spin-slow {
             animation: spin-slow 3s linear infinite;
         }
+        /* Certifications: force transparent card backgrounds so tech-bg shows through */
+        #certifications .retro-border {
+            background-color: transparent !important;
+            border-color: rgba(229,231,235,0.9) !important;
+        }
     </style>
 </head>
 <body class="bg-black">
@@ -220,6 +225,7 @@
             <div id="desktop-menu" class="hidden md:flex space-x-6">
                 <a href="#about" class="hover:text-gray-300 transition">About</a>
                 <a href="#skills" class="hover:text-gray-300 transition">Skills</a>
+                <a href="#certifications" class="hover:text-gray-300 transition">Certifications</a>
                 <a href="#projects" class="hover:text-gray-300 transition">Projects</a>
                 <a href="#experience" class="hover:text-gray-300 transition">Experience</a>
                 <a href="#contact" class="hover:text-gray-300 transition">Contact</a>
@@ -232,6 +238,7 @@
         <div id="mobile-menu" class="md:hidden hidden flex-col bg-black bg-opacity-95 w-full px-4 py-4 space-y-2 absolute left-0 top-full z-50">
             <a href="#about" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">About</a>
             <a href="#skills" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Skills</a>
+            <a href="#certifications" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Certifications</a>
             <a href="#projects" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Projects</a>
             <a href="#experience" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Experience</a>
             <a href="#contact" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Contact</a>
@@ -347,6 +354,299 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section (grouped by department) -->
+    <section id="certifications" class="py-16 my-10 cyberpunk-scroll">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-8 text-center">Certifications & Training</h2>
+
+            <div class="space-y-10">
+                <!-- Data Science & Analytics -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-100">Data Science & Analytics</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Business Analytics with Excel -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Business Analytics with Excel</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">8589062</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Business analytics using Excel</p>
+                            </div>
+                        </div>
+
+                        <!-- Data Science Internship -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Data Science Internship</h4>
+                                <p class="text-sm text-gray-400">Corizo / Wipro DICE • <span class="text-gray-300">CRZ91107</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Practical experience in data science</p>
+                            </div>
+                        </div>
+
+                        <!-- Data Science Training -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Data Science Training</h4>
+                                <p class="text-sm text-gray-400">Corizo / Wipro DICE • <span class="text-gray-300">CRZ86269</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Skill development in data science</p>
+                            </div>
+                        </div>
+
+                        <!-- Introduction to Data Science -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Introduction to Data Science</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">7633265</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Foundational data science concepts</p>
+                            </div>
+                        </div>
+
+                        <!-- Python Libraries for Data Science -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Python Libraries for Data Science</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">8886477</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Data science tools in Python</p>
+                            </div>
+                        </div>
+
+                        <!-- Introduction to Tableau -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-chart-area"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Introduction to Tableau</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">8595275</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Data visualization basics</p>
+                            </div>
+                        </div>
+
+                        <!-- Power BI for Beginners -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Power BI for Beginners</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">8578871</span></p>
+                                <p class="mt-2 text-sm text-gray-300">BI dashboard creation</p>
+                            </div>
+                        </div>
+
+                        <!-- Microsoft Excel – Coursera -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Microsoft Excel – Coursera</h4>
+                                <p class="text-sm text-gray-400">Microsoft / Coursera • <span class="text-gray-300">51K3XN0ZJSA9</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Data preparation using Excel</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programming & Development -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-100">Programming & Development</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Full-Stack Development 101 -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Full-Stack Development 101</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">7039678</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Intro to full-stack development</p>
+                            </div>
+                        </div>
+
+                        <!-- Java Programming for Beginners -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fab fa-java"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Java Programming for Beginners</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">7348632</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Programming fundamentals in Java</p>
+                            </div>
+                        </div>
+
+                        <!-- Programming with Python 3.X -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Programming with Python 3.X</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">7293337</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Python programming fundamentals</p>
+                            </div>
+                        </div>
+
+                        <!-- PostgreSQL: Become an SQL Developer -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">PostgreSQL: Become an SQL Developer</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">8514489</span></p>
+                                <p class="mt-2 text-sm text-gray-300">SQL development skills</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI & Emerging Tech -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-100">AI & Emerging Tech</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Generative AI in Action -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Generative AI in Action</h4>
+                                <p class="text-sm text-gray-400">IBM SkillsBuild • <span class="text-gray-300">PLAN-9E14CB5C4540</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Applied generative AI skills</p>
+                            </div>
+                        </div>
+
+                        <!-- Generative AI (Credly) -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Generative AI in Action (Credly)</h4>
+                                <p class="text-sm text-gray-400">IBM SkillsBuild • <a href="https://www.credly.com/badges/e7e2d9e8-6b90-4df8-94cf-95c710c9a16e" target="_blank" class="text-red-500 underline">Credly Badge</a></p>
+                                <p class="mt-2 text-sm text-gray-300">Verified credential in Generative AI</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Finance & Business -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-100">Finance & Business</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Finance Internship -->
+                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-hand-holding-dollar"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Finance Internship</h4>
+                                <p class="text-sm text-gray-400">Corizo / Wipro DICE • <span class="text-gray-300">CRZ91202</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Practical experience in finance</p>
+                            </div>
+                        </div>
+
+                        <!-- Finance Training -->
+                        <div class="bg-gray-900 p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Finance Training</h4>
+                                <p class="text-sm text-gray-400">Corizo / Wipro DICE • <span class="text-gray-300">CRZ92616</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Skill development in finance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HR & Management -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-100">HR & Management</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- HR Internship -->
+                        <div class="bg-gray-900 p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">HR Internship</h4>
+                                <p class="text-sm text-gray-400">Corizo / Wipro DICE • <span class="text-gray-300">CRZ97995</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Practical experience in HR</p>
+                            </div>
+                        </div>
+
+                        <!-- HR Training -->
+                        <div class="bg-gray-900 p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">HR Training</h4>
+                                <p class="text-sm text-gray-400">Corizo / Wipro DICE • <span class="text-gray-300">CRZ95779</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Skill development in HR</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design & Tools -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-100">Design & Tools</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Introduction to Figma -->
+                        <div class="bg-gray-900 p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-pencil-ruler"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Introduction to Figma</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">7684045</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Basics of UI/UX design</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-100">Cybersecurity</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Introduction to Kali Linux Basics -->
+                        <div class="bg-gray-900 p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-100">Introduction to Kali Linux Basics</h4>
+                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">7356386</span></p>
+                                <p class="mt-2 text-sm text-gray-300">Cybersecurity fundamentals</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </section>
 
