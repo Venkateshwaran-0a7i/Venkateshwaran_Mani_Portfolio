@@ -1,1115 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venkateshwaran Mani | Data Professional</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto+Mono:wght@300;400&display=swap');
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Venkateshwaran Mani — Data Professional</title>
 
-        html, body {
-            font-family: 'Roboto Mono', monospace;
-            background-color: #0a0a0a;
-            color: #fff;
-            scroll-behavior: smooth;
-            max-width: 100%;
-            overflow-x: hidden;
-            word-wrap: break-word;
-        }
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
+  <!-- Fonts & small custom styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f9fb; --surface:#ffffff; --text:#1f2937; --muted:#6b7280; --border:#e6eef6; --accent:#6d28d9;
+    }
+    html,body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased;}
+    .container{max-width:1100px;margin:0 auto;padding:0 1rem;}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 18px rgba(16,24,40,0.04);}
+    .accent{color:var(--accent);}
+    .btn{background:var(--accent);color:#fff;padding:.6rem 1rem;border-radius:8px;display:inline-flex;gap:.5rem;align-items:center;}
+    .chip{background:#f3e8ff;color:var(--accent);padding:.25rem .6rem;border-radius:999px;font-size:.8rem;}
+    .section-title{font-family:"Playfair Display",serif;color:var(--text);}
+    @media (min-width:768px){ .grid-2{display:grid;grid-template-columns:1fr 360px;gap:2rem;} }
 
-        .retro-border {
-            border: 3px solid #e5e7eb;
-            box-shadow: 8px 8px 0 rgba(229, 231, 235, 0.08);
-        }
+    /* Gradient outline wrapper (black → purple) */
+    .gradient-outline {
+      padding: 1px;                 /* thin outline */
+      border-radius: 12px;
+      background: linear-gradient(90deg, #000000 0%, #4c1d95 50%, #8b5cf6 100%);
+      background-attachment: fixed; /* keep gradient stationary */
+      background-size: 200% 100%;
+    }
+    /* keep inner card appearance consistent */
+    .gradient-outline .card {
+      background: var(--surface);
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+    }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(229, 231, 235, 0.10);
-        }
+    /* small animation helpers */
+    .icon-acc { color:var(--accent); margin-right:.5rem; display:inline-block; animation:float 3s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+    .icon-acc:hover{ transform: scale(1.08); }
+    .section-title { display:flex; align-items:center; gap:.5rem; }
+    .card { transition: transform .28s ease, box-shadow .28s ease; }
+    .card:hover { transform: translateY(-6px); box-shadow:0 18px 40px rgba(15,23,42,0.08); }
 
-        .project-card {
-            transition: transform 0.4s cubic-bezier(.25,.8,.25,1), box-shadow 0.4s;
-            will-change: transform;
-            perspective: 800px;
-            background: #18181b;
-            color: #fff;
-            border: 1.5px solid #e5e7eb;
-        }
-        .project-card:hover {
-            transform: rotateY(8deg) scale(1.04) translateY(-8px);
-            box-shadow: 0 16px 40px 0 rgba(229,231,235,0.15), 0 2px 8px 0 rgba(0,0,0,0.15), 0 0 20px rgba(239, 68, 68, 0.4);
-            z-index: 2;
-        }
-        .project-card:active {
-            transform: rotateY(-4deg) scale(0.98);
-        }
+    /* responsive compacting */
+    @media (max-width:768px){
+      .container{padding:0 .75rem;}
+      .card{padding:1rem;}
+      .w-56{width:140px;height:140px;}
+      .grid-2{grid-template-columns:1fr;}
+    }
 
-        .project-card:hover .project-overlay {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* Job Roles */
+    .job-roles li {
+      padding: 0.75rem;
+      border-radius: 6px;
+      transition: transform .2s ease, box-shadow .2s ease;
+      border-left-width: 4px;
+      border-left-color: transparent;
+    }
+    .job-roles li:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .job-roles li strong {
+      font-weight: 600;
+    }
+    .job-roles li:nth-child(1) { background-color: #f0f9ff; border-left-color: #38bdf8; }
+    .job-roles li:nth-child(2) { background-color: #fef2f2; border-left-color: #f87171; }
+    .job-roles li:nth-child(3) { background-color: #f7fee7; border-left-color: #a3e635; }
+    .job-roles li:nth-child(4) { background-color: #fffbeb; border-left-color: #facc15; }
+    .job-roles li:nth-child(5) { background-color: #faf5ff; border-left-color: #c084fc; }
+  </style>
 
-        .project-overlay {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-        }
-
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #ef4444;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .15em;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-            /* responsive sizing */
-            font-size: clamp(1rem, 2.4vw, 1.6rem);
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #ef4444; }
-        }
-
-        .gradient-text {
-            background: linear-gradient(45deg, #ef4444, #fff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            /* responsive heading scale */
-            font-size: clamp(2rem, 6vw, 4rem);
-            line-height: 1.02;
-        }
-
-        .section-title {
-            color: #fff;
-            background: none;
-            text-shadow: none;
-        }
-
-        @media (max-width: 768px) {
-            .retro-border { box-shadow: 4px 4px 0 rgba(229, 231, 235, 0.08);} 
-            .container { padding-left: 1rem; padding-right: 1rem; }
-        }
-
-        /* Custom scrollbar for dark bg */
-        ::-webkit-scrollbar { width: 8px; background: #1a1a1a;}
-        ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px;}
-
-        /* Animation for fade-in */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: translateY(0);} }
-        .animate-fadeIn { animation: fadeIn 1s ease forwards; }
-
-        /* 3D Button Animation */
-        .btn-3d {
-            transition: transform 0.2s cubic-bezier(.25,.8,.25,1), box-shadow 0.2s;
-            box-shadow: 0 4px 0 #991b1b, 0 8px 24px 0 rgba(239,68,68,0.10);
-            will-change: transform;
-            perspective: 400px;
-        }
-        .btn-3d:hover, .btn-3d:focus {
-            transform: translateY(-4px) scale(1.04) rotateX(8deg);
-            box-shadow: 0 8px 0 #991b1b, 0 16px 32px 0 rgba(239,68,68,0.15);
-        }
-        .btn-3d:active {
-            transform: translateY(2px) scale(0.98) rotateX(-4deg);
-        }
-
-        /* 3D Timeline Dots */
-        .timeline-dot {
-            box-shadow: 0 0 12px 2px #e5e7eb, 0 2px 8px 0 rgba(0,0,0,0.10);
-            transition: box-shadow 0.3s;
-            background: #e5e7eb;
-        }
-        .timeline-dot:hover {
-            box-shadow: 0 0 24px 6px #e5e7eb, 0 4px 16px 0 rgba(0,0,0,0.15);
-        }
-
-        /* Cyberpunk border animation */
-        .cyberpunk-border {
-            position: relative;
-            z-index: 1;
-        }
-        .cyberpunk-border::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 2px solid #e5e7eb;
-            border-radius: inherit;
-            box-shadow:
-                0 0 12px #e5e7eb,
-                0 0 24px #fff,
-                0 0 48px #e5e7eb;
-            opacity: 0.3;
-            pointer-events: none;
-            animation: cyberpunk-border-flicker 2s infinite alternate;
-            z-index: -1;
-        }
-        @keyframes cyberpunk-border-flicker {
-            0% { opacity: 0.3; box-shadow: 0 0 12px #e5e7eb, 0 0 24px #fff, 0 0 48px #e5e7eb; }
-            50% { opacity: 0.5; box-shadow: 0 0 24px #e5e7eb, 0 0 48px #fff, 0 0 96px #e5e7eb; }
-            100% { opacity: 0.3; box-shadow: 0 0 12px #e5e7eb, 0 0 24px #fff, 0 0 48px #e5e7eb; }
-        }
-
-        /* Cyberpunk scroll reveal animation */
-        .cyberpunk-scroll {
-            opacity: 0;
-            transform: translateY(60px) scale(0.98) skewY(2deg);
-            filter: blur(4px) brightness(0.7);
-            transition:
-                opacity 0.8s cubic-bezier(.77,0,.18,1),
-                transform 0.8s cubic-bezier(.77,0,.18,1),
-                filter 0.8s cubic-bezier(.77,0,.18,1);
-        }
-        .cyberpunk-scroll.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1) skewY(0);
-            filter: blur(0) brightness(1.1);
-        }
-
-        /* responsive project images */
-        .project-card img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            aspect-ratio: 16 / 9;
-        }
-
-        #tech-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.18;
-            background: transparent;
-        }
-        #tech-bg canvas {
-            width: 100vw !important;
-            height: 100vh !important;
-            display: block;
-        }
-        body > *:not(#tech-bg) {
-            position: relative;
-            z-index: 1;
-        }
-
-        @keyframes spin-slow {
-            0% { transform: rotate(0deg);} 
-            100% { transform: rotate(360deg);} 
-        }
-        .animate-spin-slow {
-            animation: spin-slow 3s linear infinite;
-        }
-        /* Certifications: force transparent card backgrounds so tech-bg shows through */
-        #certifications .retro-border {
-            background-color: transparent !important;
-            border-color: rgba(229,231,235,0.9) !important;
-            transition: box-shadow 0.3s ease;
-        }
-        #certifications .retro-border:hover {
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
-        }
-
-        /* Skills & Contact: force transparent backgrounds so tech-bg shows through */
-        #skills, #contact { background-color: transparent !important; }
-        #skills .retro-border, #contact .retro-border,
-        #skills .skill-card, #contact .skill-card,
-        #skills .retro-border *, #contact .retro-border * {
-            background-color: transparent !important;
-            border-color: rgba(229,231,235,0.9) !important;
-        }
-
-        /* Icon hover animations */
-        .icon-hover-effect {
-            transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
-        }
-        *:hover > .icon-hover-effect {
-            transform: scale(1.2);
-            color: #ef4444; /* red-500 */
-            text-shadow: 0 0 8px rgba(239, 68, 68, 0.7);
-        }
-
-        /* Dancing Robot Animation */
-        .robot-container {
-            --robot-body-color: #1f2937; /* gray-800 */
-            --robot-accent-color: #ef4444; /* red-500 */
-            --robot-light-color: #f3f4f6; /* gray-100 */
-        }
-
-        .robot {
-            width: 150px;
-            height: 220px;
-            position: relative;
-            animation: robot-dance 2s infinite ease-in-out;
-        }
-
-        /* wrapper to scale robot across screen sizes */
-        .robot-wrapper { display:inline-block; transform-origin:center; transform:scale(1); }
-        @media (max-width:1100px){ .robot-wrapper{ transform:scale(0.95);} }
-        @media (max-width:900px){ .robot-wrapper{ transform:scale(0.85);} }
-        @media (max-width:640px){ .robot-wrapper{ transform:scale(0.7);} }
-        @media (max-width:420px){ .robot-wrapper{ transform:scale(0.55);} }
-
-        /* wrapper to scale robot across screen sizes */
-        .robot-wrapper { display:inline-block; transform-origin:center; transform:scale(1); }
-        @media (max-width:1100px){ .robot-wrapper{ transform:scale(0.95);} }
-        @media (max-width:900px){ .robot-wrapper{ transform:scale(0.85);} }
-        @media (max-width:640px){ .robot-wrapper{ transform:scale(0.7);} }
-        @media (max-width:420px){ .robot-wrapper{ transform:scale(0.55);} }
-
-        @keyframes robot-dance {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            25% { transform: translateY(-10px) rotate(-3deg); }
-            50% { transform: translateY(0) rotate(0); }
-            75% { transform: translateY(-10px) rotate(3deg); }
-        }
-
-        .robot-head {
-            width: 80px;
-            height: 70px;
-            background: var(--robot-body-color);
-            border: 2px solid var(--robot-light-color);
-            border-radius: 15px 15px 5px 5px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 0;
-            z-index: 2;
-        }
-
-        .robot-head::before { /* Antenna */
-            content: '';
-            width: 4px;
-            height: 20px;
-            background: var(--robot-light-color);
-            position: absolute;
-            top: -22px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .robot-head::after { /* Antenna top */
-            content: '';
-            width: 10px;
-            height: 10px;
-            background: var(--robot-accent-color);
-            border-radius: 50%;
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: antenna-blink 1s infinite;
-        }
-
-        @keyframes antenna-blink {
-            50% { box-shadow: 0 0 10px var(--robot-accent-color); }
-        }
-
-        .robot-eye {
-            width: 40px;
-            height: 10px;
-            background: var(--robot-accent-color);
-            position: absolute;
-            top: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 5px;
-            box-shadow: 0 0 8px var(--robot-accent-color);
-        }
-
-        .robot-body {
-            width: 100px;
-            height: 100px;
-            background: var(--robot-body-color);
-            border: 2px solid var(--robot-light-color);
-            position: absolute;
-            top: 65px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 10px;
-        }
-
-        .robot-arm, .robot-leg {
-            width: 25px;
-            height: 80px;
-            background: var(--robot-body-color);
-            border: 2px solid var(--robot-light-color);
-            position: absolute;
-            border-radius: 10px;
-        }
-
-        .left { left: 0; }
-        .right { right: 0; }
-        .robot-arm { top: 75px; animation: arm-swing 2s infinite ease-in-out; }
-        .robot-leg { top: 160px; animation: leg-swing 2s infinite ease-in-out; }
-
-        /*
-         * Global transparency override (exclude html/body so the page keeps
-         * its dark background). Only force background-color to transparent
-         * — do not remove background-image or box-shadows so gradient text
-         * and button 3D effects still render.
-         */
-        :root * {
-            background-color: transparent !important;
-        }
-        /* Keep the page background dark and text readable */
-        html, body {
-            background-color: #0a0a0a !important;
-            color: #fff !important;
-        }
-        /* Preserve images, svgs and canvas visuals */
-        img, svg, canvas { background-color: initial !important; box-shadow: initial !important; }
-
-        @keyframes arm-swing { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(20deg); } 75% { transform: rotate(-20deg); } }
-        @keyframes leg-swing { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-15deg); } 75% { transform: rotate(15deg); } }
-
-    </style>
+  <!-- AOS for scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
 </head>
-<body class="bg-black">
-<div id="tech-bg"></div>
+<body>
 
-    <!-- Navigation -->
-    <nav class="bg-black bg-opacity-95 retro-border sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="text-2xl font-bold gradient-text">VM</div>
-            <div id="desktop-menu" class="hidden md:flex space-x-6">
-                <a href="#about" class="hover:text-gray-300 transition">About</a>
-                <a href="#skills" class="hover:text-gray-300 transition">Skills</a>
-                <a href="#certifications" class="hover:text-gray-300 transition">Certifications</a>
-                <a href="#projects" class="hover:text-gray-300 transition">Projects</a>
-                <a href="#education" class="hover:text-gray-300 transition">Education</a>
-                <a href="#experience" class="hover:text-gray-300 transition">Experience</a>
-                <a href="#contact" class="hover:text-gray-300 transition">Contact</a>
-            </div>
-            <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Open menu">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+  <!-- NAV -->
+  <header class="sticky top-4 z-40">
+    <div class="container flex items-center justify-between py-4">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-md bg-gradient-to-r from-purple-600 to-violet-600 flex items-center justify-center text-white font-bold">VM</div>
+        <div>
+          <div class="font-semibold">Venkateshwaran Mani</div>
+          <div class="text-xs text-muted text-gray-500">Data Professional</div>
         </div>
-        <!-- Mobile Dropdown -->
-        <div id="mobile-menu" class="md:hidden hidden flex-col bg-black bg-opacity-95 w-full px-4 py-4 space-y-2 absolute left-0 top-full z-50">
-            <a href="#about" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">About</a>
-            <a href="#skills" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Skills</a>
-            <a href="#certifications" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Certifications</a>
-            <a href="#projects" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Projects</a>
-            <a href="#education" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Education</a>
-            <a href="#experience" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Experience</a>
-            <a href="#contact" class="block py-2 px-2 rounded hover:bg-gray-800 hover:text-white transition">Contact</a>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm text-gray-700">
+        <a href="#about" class="hover:underline">About</a>
+        <a href="#skills" class="hover:underline">Skills</a>
+        <a href="#projects" class="hover:underline">Projects</a>
+        <a href="#experience" class="hover:underline">Experience</a>
+        <a href="#certifications" class="hover:underline">Certifications</a>
+        <a href="#contact" class="hover:underline">Contact</a>
+        <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="ml-2 text-gray-600 hover:text-gray-800"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/venkateshwaran-mani-9973322a7" target="_blank" class="text-gray-600 hover:text-gray-800"><i class="fab fa-linkedin"></i></a>
+      </nav>
+
+      <button id="mobileOpen" class="md:hidden p-2 text-gray-700"><i class="fas fa-bars"></i></button>
+    </div>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg mx-4 rounded-lg p-4">
+      <div class="flex flex-col gap-3 text-sm">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="mt-8">
+    <div class="gradient-outline" data-aos="fade-up">
+      <div class="card p-8 grid gap-6 md:grid-cols-2 items-center">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-bold section-title"><i class="fas fa-user-astronaut icon-acc" aria-hidden="true"></i>Venkateshwaran Mani</h1>
+          <p class="mt-2 text-lg text-gray-700">Data Scientist & Analyst — transforming raw data into actionable business insights using statistics, ML and BI.</p>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#contact" class="btn">Get in touch</a>
+            <a href="#projects" class="btn" style="background:#eef6ff;color:var(--accent);border:1px solid rgba(11,99,214,0.12)">View projects</a>
+            <a href="https://drive.google.com/file/d/1GIzQe1iIcy4UoQGJdrw-i4kWMHbOM5xO/view?usp=sharing" target="_blank" class="btn" style="background:transparent;color:var(--accent);border:1px solid var(--border)">Resume</a>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-2 items-center text-sm">
+            <span class="chip">Python</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Power BI</span>
+            <span class="chip">Tableau</span>
+            <span class="chip">Machine Learning</span>
+          </div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="py-16 px-4 min-h-[80vh] flex items-center justify-center">
-        <div class="container mx-auto flex flex-col md:flex-row items-center max-w-screen-lg">
-            <div class="md:w-1/2 mb-10 md:mb-0">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">Venkateshwaran Mani</h1>
-                <div class="typewriter text-2xl md:text-3xl mb-6 font-mono text-white">Data Scientist</div>
-                <p class="text-lg mb-8 text-gray-300">Transforming raw data into actionable business insights through statistical analysis and AI-driven techniques.</p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contact" class="btn-3d bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition transform hover:scale-105 text-center border-2 border-white">Get In Touch</a>
-                    <a href="#projects" class="btn-3d border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-6 py-3 rounded-lg transition transform hover:scale-105 text-center">View Projects</a>
-                    <a href="https://drive.google.com/file/d/1GIzQe1iIcy4UoQGJdrw-i4kWMHbOM5xO/view?usp=sharing" target="_blank"
-                       class="btn-3d bg-red-600 hover:bg-red-700 text-white border border-white px-6 py-3 rounded-lg transition transform hover:scale-105 flex items-center justify-center">
-                        <i class="fas fa-file-alt mr-2"></i> View Resume
-                    </a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center mt-8 md:mt-0">
-                <div class="w-56 h-56 rounded-full overflow-hidden ring-2 ring-red-600 retro-border pulse-animation">
-                    <img src="Venkateshwaran.png" alt="Venkateshwaran Mani" class="w-full h-full object-cover">
-                </div>
-            </div>
+        <div class="flex justify-center">
+          <div class="w-56 h-56 card rounded-full overflow-hidden flex items-center justify-center">
+            <img src="Venkateshwaran.png" alt="Photo" class="object-cover w-full h-full">
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-black retro-border cyberpunk-border my-10 mx-4 md:mx-10 cyberpunk-scroll">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-3xl font-bold mb-10 text-center text-red-500">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                    <p class="text-lg mb-4 text-gray-200">I am Venkateshwaran Mani, an aspiring <span class="font-bold text-red-600">Data Analyst</span> and <span class="font-bold text-red-600">Junior Data Scientist</span> with a strong educational background in Artificial Intelligence and Data Science.</p>
-                    <p class="text-lg mb-4 text-gray-200">Passionate about turning complex datasets into meaningful insights, I leverage AI tools, statistical techniques, and business intelligence to enable data-driven decision-making.</p>
-                    <p class="text-lg text-gray-200">With a foundational grasp of Python, SQL, Power BI, Tableau, and Excel, I have executed real-time analytics projects, led the development of impactful dashboards, and contributed to AI-integrated HR and business workflows.</p>
-                </div>
-                <div class="md:w-1/2 bg-gray-900 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-4 text-gray-100">Professional Summary</h3>
-                    <p class="mb-4 text-gray-300">I specialize in transforming raw data into actionable business insights through statistical analysis and AI-driven techniques.</p>
-                    <p class="mb-4 text-gray-300">I have worked on several real-world datasets to solve complex problems in manufacturing, human resources, and business analytics.</p>
-                    <p class="text-gray-300">Whether it's building an AI-powered dashboard, optimizing a machine learning model, or generating insights from unstructured data, I take pride in delivering work that is both technically sound and strategically aligned.</p>
-                </div>
-            </div>
+  <!-- ABOUT + SUMMARY -->
+  <section id="about" class="mt-8">
+    <div class="gradient-outline" data-aos="fade-up">
+      <div class="card p-6 grid-2 items-start gap-6">
+        <div class="card p-6">
+          <h2 class="text-2xl font-semibold section-title"><i class="fas fa-info-circle icon-acc" aria-hidden="true"></i>About</h2>
+          <p class="mt-3 text-gray-700">I am an aspiring Data Analyst and Junior Data Scientist with a strong educational background in Artificial Intelligence and Data Science. I specialize in turning complex datasets into clear, actionable insights and building BI solutions and predictive models aligned to business goals.</p>
+
+          <ul class="mt-4 space-y-2 text-gray-600">
+            <li><strong>Domain:</strong> Manufacturing, HR analytics, Retail analytics</li>
+            <li><strong>Tools:</strong> Python, Pandas, scikit-learn, SQL, Power BI, Tableau</li>
+            <li><strong>Approach:</strong> EDA → Feature engineering → Model tuning → Dashboarding</li>
+          </ul>
         </div>
-    </section>
+        <aside class="card p-6">
+          <h3 class="font-semibold text-gray-800 section-title"><i class="fas fa-address-card icon-acc"></i>Contact</h3>
+          <div class="mt-3 text-sm text-gray-700 space-y-2">
+            <div><strong>Email:</strong> <a href="mailto:venkateshwaran0720@gmail.com" class="text-blue-600">venkateshwaran0720@gmail.com</a></div>
+            <div><strong>Phone:</strong> <a href="tel:+919655724769" class="text-gray-700">+91 9655724769</a></div>
+            <div><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/venkateshwaran-mani-9973322a7" target="_blank" class="text-blue-600">linkedin.com/in/venkateshwaran-mani</a></div>
+            <div><strong>GitHub:</strong> <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="text-blue-600">github.com/Venkateshwaran-0a7i</a></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-black retro-border cyberpunk-border my-10 mx-4 md:mx-10 cyberpunk-scroll">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Skills & Technologies</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Technical Skills Column -->
-                <div class="space-y-8">
-                    <!-- Data Analysis -->
-                    <div class="bg-transparent p-6 rounded-lg retro-border">
-                        <h3 class="text-xl font-bold mb-4 text-gray-100 flex items-center"><i class="fas fa-chart-pie mr-3 text-red-500"></i>Data Analysis</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-database text-red-400 icon-hover-effect"></i>SQL</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-database text-red-400 icon-hover-effect"></i>NoSQL</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-file-excel text-red-400 icon-hover-effect"></i>Excel</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-chart-bar text-red-400 icon-hover-effect"></i>Power BI</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-chart-area text-red-400 icon-hover-effect"></i>Tableau</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-paint-brush text-red-400 icon-hover-effect"></i>Data Visualization</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-calculator text-red-400 icon-hover-effect"></i>DAX</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-exchange-alt text-red-400 icon-hover-effect"></i>ETL Processes</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fab fa-google text-red-400 icon-hover-effect"></i>GCP</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fa-solid fa-sheet-plastic text-red-400 icon-hover-effect"></i>Google Sheets</span>
-                        </div>
-                    </div>
-                    <!-- Programming & Tools -->
-                    <div class="bg-transparent p-6 rounded-lg retro-border">
-                        <h3 class="text-xl font-bold mb-4 text-gray-100 flex items-center"><i class="fas fa-code mr-3 text-red-500"></i>Programming & Tools</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fab fa-python text-red-400 icon-hover-effect"></i>Python & Libraries</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fab fa-r-project text-red-400 icon-hover-effect"></i>R</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-search text-red-400 icon-hover-effect"></i>EDA</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-brain text-red-400 icon-hover-effect"></i>Predictive Modeling</span>
-                            <span class="bg-gray-800 text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-sliders-h text-red-400 icon-hover-effect"></i>Hyperparameter Tuning</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Soft Skills & Concepts Column -->
-                <div class="space-y-8">
-                    <!-- Soft Skills -->
-                    <div class="bg-transparent p-6 rounded-lg retro-border">
-                    <h3 class="text-xl font-bold mb-4 text-gray-100 flex items-center">
-                        <i class="fas fa-users mr-3 text-red-500"></i> Soft Skills
-                    </h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-comments text-red-400 icon-hover-effect"></i>Communication</span>
-                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-lightbulb text-red-400 icon-hover-effect"></i>Problem Solving</span>
-                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-brain text-red-400 icon-hover-effect"></i>Critical Thinking</span>
-                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-users text-red-400 icon-hover-effect"></i>Collaboration</span>
-                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-book-open text-red-400 icon-hover-effect"></i>Data Storytelling</span>
-                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-cogs text-red-400 icon-hover-effect"></i>Adaptability</span>
-                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-briefcase text-red-400 icon-hover-effect"></i>Business Acumen</span>
-                        <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-project-diagram text-red-400 icon-hover-effect"></i>Process Mapping</span>
-                    </div>
-                    </div>
-                    <!-- Other Skills & Concepts -->
-                    <div class="bg-transparent p-6 rounded-lg retro-border">
-                        <h3 class="text-xl font-bold mb-4 text-gray-100 flex items-center"><i class="fas fa-lightbulb mr-3 text-red-500"></i>Other Skills & Concepts</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-robot text-red-400 icon-hover-effect"></i>AI-Driven Insights</span>
-                            <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-cogs text-red-400 icon-hover-effect"></i>Machine Learning</span>
-                            <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-search-plus text-red-400 icon-hover-effect"></i>Data Mining</span>
-                            <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-robot text-red-400 icon-hover-effect"></i>Report Automation</span>
-                            <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-tachometer-alt text-red-400 icon-hover-effect"></i>Dashboarding</span>
-                            <span class="bg-transparent text-gray-200 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-user-friends text-red-400 icon-hover-effect"></i>People Insight</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- SKILLS -->
+  <section id="skills" class="mt-8">
+    <div class="gradient-outline" data-aos="fade-up">
+      <div class="card p-6">
+        <h2 class="section-title text-2xl mb-4"><i class="fas fa-tools icon-acc" aria-hidden="true"></i>Skills & Technologies</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="card p-4">
+            <h4 class="font-semibold">Data & BI</h4>
+            <ul class="mt-3 text-gray-700 space-y-2">
+              <li>SQL / NoSQL • Power BI • Tableau • DAX</li>
+              <li>Data modelling • ETL • Dashboard design</li>
+            </ul>
+          </div>
+          <div class="card p-4">
+            <h4 class="font-semibold">Programming</h4>
+            <ul class="mt-3 text-gray-700 space-y-2">
+              <li>Python (Pandas, NumPy, scikit-learn) • R</li>
+              <li>EDA • Feature engineering • Model tuning</li>
+            </ul>
+          </div>
+          <div class="card p-4">
+            <h4 class="font-semibold">Soft & Business</h4>
+            <ul class="mt-3 text-gray-700 space-y-2">
+              <li>Communication • Data storytelling • Problem solving • Collaboration</li>
+            </ul>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Certifications Section (grouped by department) -->
-    <section id="certifications" class="py-16 bg-black retro-border cyberpunk-border my-10 mx-4 md:mx-10 cyberpunk-scroll">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-3xl font-bold mb-8 text-center text-red-500">Certifications & Training</h2>
+  <!-- PROJECTS -->
+  <section id="projects" class="mt-8">
+    <div class="gradient-outline" data-aos="fade-up">
+      <div class="card p-6">
+        <h2 class="section-title text-2xl mb-4"><i class="fas fa-folder-open icon-acc" aria-hidden="true"></i>Featured Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Project card template -->
+          <article class="card p-4" data-aos="zoom-in" data-aos-delay="60">
+            <h4 class="font-semibold"><i class="fas fa-microchip text-indigo-600 mr-2"></i>Semiconductor Yield Prediction</h4>
+            <p class="mt-2 text-gray-600 text-sm">Classification models, PCA, feature engineering, GridSearchCV. <a href="https://github.com/Venkateshwaran-0a7i/semiconductor-yield-prediction" target="_blank" class="text-blue-600">View repo</a></p>
+            <div class="mt-3 flex gap-2"><span class="chip">Python</span><span class="chip">ML</span></div>
+          </article>
 
-            <div class="space-y-10">
-                <!-- Data Science & Analytics -->
-                <div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-100">Data Science & Analytics</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Business Analytics with Excel -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-file-excel icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Business Analytics with Excel</h4>
-                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">8589062</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Business analytics using Excel</p>
-                            </div>
-                        </div>
+          <article class="card p-4" data-aos="zoom-in" data-aos-delay="120">
+            <h4 class="font-semibold"><i class="fas fa-heartbeat text-indigo-600 mr-2"></i>Anthropometric Data Analysis</h4>
+            <p class="mt-2 text-gray-600 text-sm">Data cleaning & visualization using Pandas and NumPy. <a href="https://github.com/Venkateshwaran-0a7i/gender-body-analysis" target="_blank" class="text-blue-600">View repo</a></p>
+            <div class="mt-3 flex gap-2"><span class="chip">Pandas</span><span class="chip">Vis</span></div>
+          </article>
 
-                        <!-- Data Science Internship -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-briefcase icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Data Science Internship</h4>
-                                <p class="text-sm text-gray-400">Corizo / Wipro DICE • <span class="text-gray-300">CRZ91107</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Practical experience in data science</p>
-                            </div>
-                        </div>
-
-                        <!-- Data Science Training -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-graduation-cap icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Data Science Training</h4>
-                                <p class="text-sm text-gray-400">Corizo / Wipro DICE • <span class="text-gray-300">CRZ86269</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Skill development in data science</p>
-                            </div>
-                        </div>
-
-                        <!-- Introduction to Data Science -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-database icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Introduction to Data Science</h4>
-                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">7633265</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Foundational data science concepts</p>
-                            </div>
-                        </div>
-
-                        <!-- Python Libraries for Data Science -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fab fa-python icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Python Libraries for Data Science</h4>
-                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">8886477</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Data science tools in Python</p>
-                            </div>
-                        </div>
-
-                        <!-- Introduction to Tableau -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-chart-area icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Introduction to Tableau</h4>
-                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">8595275</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Data visualization basics</p>
-                            </div>
-                        </div>
-
-                        <!-- Power BI for Beginners -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-chart-bar icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Power BI for Beginners</h4>
-                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">8578871</span></p>
-                                <p class="mt-2 text-sm text-gray-300">BI dashboard creation</p>
-                            </div>
-                        </div>
-
-                        <!-- Microsoft Excel – Coursera -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-file-excel icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Microsoft Excel – Coursera</h4>
-                                <p class="text-sm text-gray-400">Microsoft / Coursera • <span class="text-gray-300">51K3XN0ZJSA9</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Data preparation using Excel</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Programming & Development -->
-                <div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-100">Programming & Development</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Full-Stack Development 101 -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-code icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Full-Stack Development 101</h4>
-                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">7039678</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Intro to full-stack development</p>
-                            </div>
-                        </div>
-
-                        <!-- Java Programming for Beginners -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fab fa-java icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Java Programming for Beginners</h4>
-                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">7348632</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Programming fundamentals in Java</p>
-                            </div>
-                        </div>
-
-                        <!-- Programming with Python 3.X -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fab fa-python icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Programming with Python 3.X</h4>
-                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">7293337</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Python programming fundamentals</p>
-                            </div>
-                        </div>
-
-                        <!-- PostgreSQL: Become an SQL Developer -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-database icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">PostgreSQL: Become an SQL Developer</h4>
-                                <p class="text-sm text-gray-400">Simplilearn SkillUp • <span class="text-gray-300">8514489</span></p>
-                                <p class="mt-2 text-sm text-gray-300">SQL development skills</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI & Emerging Tech -->
-                <div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-100">AI & Emerging Tech</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Generative AI in Action -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-robot icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Generative AI in Action</h4>
-                                <p class="text-sm text-gray-400">IBM SkillsBuild • <span class="text-gray-300">PLAN-9E14CB5C4540</span></p>
-                                <p class="mt-2 text-sm text-gray-300">Applied generative AI skills</p>
-                            </div>
-                        </div>
-
-                        <!-- Generative AI (Credly) -->
-                        <div class="bg-transparent p-5 rounded-lg retro-border flex items-start gap-4">
-                            <div class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-md text-red-500 text-xl">
-                                <i class="fas fa-award icon-hover-effect"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-100">Generative AI in Action (Credly)</h4>
-                                <p class="text-sm text-gray-400">IBM SkillsBuild • <a href="https://www.credly.com/badges/e7e2d9e8-6b90-4df8-94cf-95c710c9a16e" target="_blank" class="text-red-500 underline">Credly Badge</a></p>
-                                <p class="mt-2 text-sm text-gray-300">Verified credential in Generative AI</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+          <article class="card p-4" data-aos="zoom-in" data-aos-delay="180">
+            <h4 class="font-semibold"><i class="fas fa-chart-line text-indigo-600 mr-2"></i>AI-powered HR Analytics Dashboard</h4>
+            <p class="mt-2 text-gray-600 text-sm">Power BI dashboards and HR insights automation (case study placeholder).</p>
+            <div class="mt-3 flex gap-2"><span class="chip">Power BI</span><span class="chip">HR</span></div>
+          </article>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 bg-black retro-border cyberpunk-border my-10 mx-4 md:mx-10 cyberpunk-scroll">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Featured Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card rounded-lg overflow-hidden transition duration-300">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Semiconductor" class="w-full h-48 object-cover">
-                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-4">
-                            <div>
-                                <h3 class="font-bold text-lg text-white">Semiconductor Yield Prediction</h3>
-                                <a href="https://github.com/Venkateshwaran-0a7i/semiconductor-yield-prediction" target="_blank" class="text-red-600 hover:text-white inline-flex items-center mt-2">
-                                    View on GitHub <i class="fas fa-external-link-alt ml-1 text-sm"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <ul class="list-disc pl-5 text-sm space-y-2 text-gray-200">
-                            <li>Built classification models to forecast yield outcomes in manufacturing</li>
-                            <li>Applied PCA, feature engineering, and GridSearchCV for optimization</li>
-                            <li>Enhanced predictive accuracy and supported smart factory insights</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Project 2 -->
-                <div class="project-card rounded-lg overflow-hidden transition duration-300">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Anthropometric" class="w-full h-48 object-cover">
-                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-4">
-                            <div>
-                                <h3 class="font-bold text-lg text-white">Anthropometric Data Analysis</h3>
-                                <a href="https://github.com/Venkateshwaran-0a7i/gender-body-analysis" target="_blank" class="text-red-600 hover:text-white inline-flex items-center mt-2">
-                                    View on GitHub <i class="fas fa-external-link-alt ml-1 text-sm"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <ul class="list-disc pl-5 text-sm space-y-2 text-gray-200">
-                            <li>Cleaned and analyzed biometric data using NumPy and Pandas</li>
-                            <li>Visualized BMI trends and performed statistical correlation analysis</li>
-                            <li>Developed health-focused applications from the insights</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="project-card rounded-lg overflow-hidden transition duration-300">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="HR Analytics" class="w-full h-48 object-cover">
-                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-4">
-                            <div>
-                                <h3 class="font-bold text-lg text-white">AI-Powered HR Analytics Dashboard</h3>
-                                <a href="#" class="text-red-600 hover:text-white inline-flex items-center mt-2">
-                                    Case Study <i class="fas fa-external-link-alt ml-1 text-sm"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <ul class="list-disc pl-5 text-sm space-y-2 text-gray-200">
-                            <li>Designed BI dashboards using Power BI, reducing analysis time by 30%</li>
-                            <li>Automated HR insights such as onboarding, performance, and attrition</li>
-                            <li>Employed AI methods to simplify people analytics and HR decision-making</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Project 4 -->
-                <div class="project-card rounded-lg overflow-hidden transition duration-300 md:col-span-2 lg:col-span-1">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Retail Analysis" class="w-full h-48 object-cover">
-                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-4">
-                            <div>
-                                <h3 class="font-bold text-lg text-white">Retail Inventory & Sales Analysis – Zepto</h3>
-                                <a href="https://github.com/Venkateshwaran-0a7i/Zepto-Inventory-analysis-SQL" target="_blank" class="text-red-600 hover:text-white inline-flex items-center mt-2">
-                                    View on GitHub <i class="fas fa-external-link-alt ml-1 text-sm"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <ul class="list-disc pl-5 text-sm space-y-2 text-gray-200">
-                            <li>Analyzed Zepto's product and inventory data using SQL</li>
-                            <li>Identified top-value products and revenue-driving categories</li>
-                            <li>Cleaned and structured data for BI tools integration</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-12">
-                <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="btn-3d inline-flex items-center bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition transform hover:scale-105 border border-white">
-                    Explore More Projects on GitHub <i class="fab fa-github ml-2"></i>
-                </a>
-            </div>
+        <div class="mt-6 text-center">
+          <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="btn">More on GitHub</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Education Section -->
-    <section id="education" class="py-16 bg-black retro-border cyberpunk-border my-10 mx-4 md:mx-10 cyberpunk-scroll">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Education</h2>
-            <div class="space-y-8">
-                <div class="border-l-4 border-gray-200 pl-6 relative">
-                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                    <h3 class="text-xl font-bold text-gray-100">Bharath Niketan Engineering College</h3>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                        <h4 class="font-semibold text-gray-200">B.Tech – Artificial Intelligence and Data Science</h4>
-                        <span class="text-sm text-gray-400">2022 – 2026</span>
-                    </div>
-                    <p class="text-sm text-gray-300">Pursuing a specialized degree in AI and Data Science, focusing on machine learning, data analytics, and intelligent systems.</p>
-                </div>
-                <div class="border-l-4 border-gray-200 pl-6 relative">
-                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                    <h3 class="text-xl font-bold text-gray-100">P.K.N Higher Secondary School</h3>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                        <h4 class="font-semibold text-gray-200">High School – Computer Science</h4>
-                        <span class="text-sm text-gray-400">Graduated 2022</span>
-                    </div>
-                    <p class="text-sm text-gray-300">Completed higher secondary education with a focus on computer science, building a strong foundation in programming and logical reasoning.</p>
-                </div>
+  <!-- EXPERIENCE -->
+  <section id="experience" class="mt-8">
+    <div class="gradient-outline" data-aos="fade-up">
+      <div class="card p-6">
+        <h2 class="section-title text-2xl mb-4"><i class="fas fa-briefcase icon-acc" aria-hidden="true"></i>Experience & Education</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="card p-4">
+            <h4 class="font-semibold">Corizo Edutech — Data Science Intern</h4>
+            <div class="text-sm text-gray-600">Feb 2025 – Mar 2025</div>
+            <ul class="mt-3 text-gray-700 space-y-2">
+              <li>Led real-time ML projects; model tuning and accuracy improvements.</li>
+              <li>Built dashboards and extracted insights from unstructured data.</li>
+            </ul>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Education</h4>
+            <div class="mt-2 text-gray-700">
+              <div class="font-medium">B.Tech — Artificial Intelligence & Data Science</div>
+              <div class="text-sm text-gray-600">Bharath Niketan Engineering College — 2022–2026 (ongoing)</div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-16 bg-black retro-border cyberpunk-border my-10 mx-4 md:mx-10 cyberpunk-scroll">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Experience</h2>
-            <div class="space-y-8">
-                <div class="border-l-4 border-gray-200 pl-6 relative">
-                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                    <h3 class="text-xl font-bold text-gray-100">Corizo Edutech</h3>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                        <h4 class="font-semibold text-gray-200">Data Science Intern</h4>
-                        <span class="text-sm text-gray-400">Feb 2025 – Mar 2025</span>
-                    </div>
-                    <ul class="list-disc pl-5 text-sm space-y-2 text-gray-200">
-                        <li>Led real-time ML projects; improved model accuracy by 20% via tuning</li>
-                        <li>Developed dashboards and extracted insights from unstructured datasets</li>
-                    </ul>
-                </div>
-                <div class="border-l-4 border-gray-200 pl-6 relative">
-                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                    <h3 class="text-xl font-bold text-gray-100">Corizo Edutech</h3>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                        <h4 class="font-semibold text-gray-200">Human Resources Intern</h4>
-                        <span class="text-sm text-gray-400">Apr 2025 – May 2025</span>
-                    </div>
-                    <ul class="list-disc pl-5 text-sm space-y-2 text-gray-200">
-                        <li>Applied data analytics to streamline employee onboarding and engagement</li>
-                        <li>Delivered actionable insights for HR decision-makers using data storytelling techniques</li>
-                    </ul>
-                </div>
-            </div>
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="mt-8">
+    <div class="gradient-outline" data-aos="fade-up">
+      <div class="card p-6">
+        <h2 class="section-title text-2xl mb-4"><i class="fas fa-certificate icon-acc" aria-hidden="true"></i>Certifications & Training</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="card p-4">
+            <h4 class="font-semibold">Business Analytics with Excel</h4>
+            <div class="text-sm text-gray-600">Simplilearn SkillUp — ID: 8589062</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Data Science Internship</h4>
+            <div class="text-sm text-gray-600">Corizo / Wipro DICE — CRZ91107</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Data Science Training</h4>
+            <div class="text-sm text-gray-600">Corizo / Wipro DICE — CRZ86269</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Introduction to Data Science</h4>
+            <div class="text-sm text-gray-600">Simplilearn SkillUp — ID: 7633265</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Python Libraries for Data Science</h4>
+            <div class="text-sm text-gray-600">Simplilearn SkillUp — ID: 8886477</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Introduction to Tableau</h4>
+            <div class="text-sm text-gray-600">Simplilearn SkillUp — ID: 8595275</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Power BI for Beginners</h4>
+            <div class="text-sm text-gray-600">Simplilearn SkillUp — ID: 8578871</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Microsoft Excel (Coursera)</h4>
+            <div class="text-sm text-gray-600">Microsoft / Coursera — Certificate ID: 51K3XN0ZJSA9</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Full-Stack Development 101</h4>
+            <div class="text-sm text-gray-600">Simplilearn SkillUp — ID: 7039678</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Java Programming for Beginners</h4>
+            <div class="text-sm text-gray-600">Simplilearn SkillUp — ID: 7348632</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Programming with Python 3.X</h4>
+            <div class="text-sm text-gray-600">Simplilearn SkillUp — ID: 7293337</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">PostgreSQL: Become an SQL Developer</h4>
+            <div class="text-sm text-gray-600">Simplilearn SkillUp — ID: 8514489</div>
+          </div>
+
+          <div class="card p-4">
+            <h4 class="font-semibold">Generative AI in Action</h4>
+            <div class="text-sm text-gray-600">IBM SkillsBuild — PLAN-9E14CB5C4540 (plus Credly badge)</div>
+          </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-black retro-border cyberpunk-border my-10 mx-4 md:mx-10 cyberpunk-scroll">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Let's Connect</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="space-y-8">
-                    <!-- Email -->
-                    <div class="border-l-4 border-gray-200 pl-6 relative">
-                        <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                        <h3 class="text-xl font-bold text-gray-100 flex items-center gap-2"><i class="fas fa-envelope text-red-500 icon-hover-effect"></i>Email</h3>
-                        <a href="mailto:venkateshwaran0720@gmail.com" class="text-gray-300 hover:text-white transition">venkateshwaran0720@gmail.com</a>
-                    </div>
-                    <!-- Phone -->
-                    <div class="border-l-4 border-gray-200 pl-6 relative">
-                        <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                        <h3 class="text-xl font-bold text-gray-100 flex items-center gap-2"><i class="fas fa-phone text-red-500 icon-hover-effect"></i>Phone</h3>
-                        <a href="tel:+919655724769" class="text-gray-300 hover:text-white transition">+91 9655724769</a>
-                    </div>
-                    <!-- LinkedIn -->
-                    <div class="border-l-4 border-gray-200 pl-6 relative">
-                        <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                        <h3 class="text-xl font-bold text-gray-100 flex items-center gap-2"><i class="fab fa-linkedin text-red-500 icon-hover-effect"></i>LinkedIn</h3>
-                        <a href="https://www.linkedin.com/in/venkateshwaran-mani-9973322a7" target="_blank" class="text-gray-300 hover:text-white transition">linkedin.com/in/venkateshwaran-mani</a>
-                    </div>
-                    <!-- GitHub -->
-                    <div class="border-l-4 border-gray-200 pl-6 relative">
-                        <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                        <h3 class="text-xl font-bold text-gray-100 flex items-center gap-2"><i class="fab fa-github text-red-500 icon-hover-effect"></i>GitHub</h3>
-                        <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="text-gray-300 hover:text-white transition">github.com/Venkateshwaran-0a7i</a>
-                    </div>
-                </div>
-                <div class="flex justify-center md:justify-end">
-                    <div class="robot-container">
-                        <div class="robot-wrapper">
-                            <div class="robot">
-                            <div class="robot-head">
-                                <div class="robot-eye"></div>
-                            </div>
-                            <div class="robot-body"></div>
-                            <div class="robot-arm left"></div>
-                            <div class="robot-arm right"></div>
-                            <div class="robot-leg left"></div>
-                            <div class="robot-leg right"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="mt-6 text-sm text-gray-600">
+          <p>Other micro-certifications available on request. Add links to digital badges/credential pages for each card if you want viewers to verify certificates online.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Job Roles Section -->
-    <section id="job-roles" class="py-16 bg-black retro-border cyberpunk-border my-10 mx-4 md:mx-10 cyberpunk-scroll">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Target Job Roles</h2>
-            <div class="space-y-8">
-                <div class="border-l-4 border-gray-200 pl-6 relative">
-                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                    <h3 class="text-xl font-bold text-gray-100 flex items-center gap-2"><i class="fas fa-chart-line text-red-500 icon-hover-effect"></i>Data Analyst</h3>
-                    <p class="text-gray-300">Analyzing data to identify trends, create reports, and support business decisions.</p>
-                </div>
-                <div class="border-l-4 border-gray-200 pl-6 relative">
-                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                    <h3 class="text-xl font-bold text-gray-100 flex items-center gap-2"><i class="fas fa-flask text-red-500 icon-hover-effect"></i>Data Scientist</h3>
-                    <p class="text-gray-300">Using machine learning and statistical modeling to build predictive models and AI solutions.</p>
-                </div>
-                <div class="border-l-4 border-gray-200 pl-6 relative">
-                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                    <h3 class="text-xl font-bold text-gray-100 flex items-center gap-2"><i class="fas fa-briefcase text-red-500 icon-hover-effect"></i>Business Analyst</h3>
-                    <p class="text-gray-300">Bridging the gap between IT and the business to improve processes and efficiency.</p>
-                </div>
-                <div class="border-l-4 border-gray-200 pl-6 relative">
-                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                    <h3 class="text-xl font-bold text-gray-100 flex items-center gap-2"><i class="fas fa-chart-bar text-red-500 icon-hover-effect"></i>BI Developer</h3>
-                    <p class="text-gray-300">Designing and developing BI solutions, dashboards, and reports for stakeholders.</p>
-                </div>
-                <div class="border-l-4 border-gray-200 pl-6 relative">
-                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
-                    <h3 class="text-xl font-bold text-gray-100 flex items-center gap-2"><i class="fas fa-users text-red-500 icon-hover-effect"></i>HR Analytics Specialist</h3>
-                    <p class="text-gray-300">Applying data analysis techniques to human resources data to improve talent management.</p>
-                </div>
+  <!-- CONTACT -->
+  <section id="contact" class="mt-8 mb-12">
+    <div class="gradient-outline" data-aos="fade-up">
+      <div class="card p-6">
+        <div class="flex flex-col md:flex-row gap-6">
+          <!-- Left: Job roles -->
+          <div class="flex-1">
+            <h3 class="font-semibold section-title"><i class="fas fa-clipboard-list icon-acc" aria-hidden="true"></i>Open to roles</h3>
+            <p class="mt-2 text-gray-700">Actively seeking internships and junior-level roles in data & analytics. Core interests and target positions:</p>
+
+            <ul class="mt-4 space-y-2 text-gray-700 job-roles">
+              <li><i class="fas fa-chart-bar role-icon"></i><strong>Data Analyst</strong> — SQL, reporting, dashboarding, KPI design</li>
+              <li><i class="fas fa-flask role-icon"></i><strong>Junior Data Scientist</strong> — predictive modeling, feature engineering, evaluation</li>
+              <li><i class="fas fa-lightbulb role-icon"></i><strong>Business Intelligence Developer</strong> — Power BI / Tableau, DAX, data modelling</li>
+              <li><i class="fas fa-file-alt role-icon"></i><strong>Reporting / BI Analyst</strong> — ETL, automated reports, stakeholder insights</li>
+              <li><i class="fas fa-users role-icon"></i><strong>HR Analytics Specialist</strong> — people analytics, attrition & engagement metrics</li>
+            </ul>
+          </div>
+
+          <!-- Right: merged "Let's connect" + contact CTA -->
+          <div class="w-full md:w-96 flex flex-col justify-between">
+            <div>
+              <h3 class="font-semibold section-title"><i class="fas fa-handshake icon-acc" aria-hidden="true"></i>Let's connect</h3>
+              <p class="mt-2 text-gray-700">Prefer direct messages or email for opportunities. Please include the role and a brief message.</p>
+
+              <div class="mt-4 text-sm">
+                <div><strong>Email:</strong> <a href="mailto:venkateshwaran0720@gmail.com" class="text-blue-600">venkateshwaran0720@gmail.com</a></div>
+                <div><strong>Phone:</strong> <a href="tel:+919655724769" class="text-gray-700">+91 9655724769</a></div>
+                <div class="mt-3"><a href="https://www.linkedin.com/in/venkateshwaran-mani-9973322a7" target="_blank" class="text-blue-600">LinkedIn</a> · <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="text-blue-600">GitHub</a></div>
+              </div>
             </div>
+
+            <div class="mt-4">
+              <a href="mailto:venkateshwaran0720@gmail.com" class="btn w-full text-center">Contact / Apply</a>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h2 class="text-2xl font-bold gradient-text">Venkateshwaran Mani</h2>
-                    <p class="text-gray-400">Data Professional | AI & Analytics Enthusiast</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://www.linkedin.com/in/venkateshwaran-mani-9973322a7" target="_blank" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-linkedin text-xl icon-hover-effect"></i>
-                    </a>
-                    <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-github text-xl icon-hover-effect"></i>
-                    </a>
-                    <a href="mailto:venkateshwaran0720@gmail.com" class="text-gray-400 hover:text-white transition">
-                        <i class="fas fa-envelope text-xl icon-hover-effect"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
-                <p>&copy; 2023 Venkateshwaran Mani. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+  <!-- FOOTER -->
+  <footer class="text-center text-sm text-gray-500 mb-8">
+    <div>© 2023 Venkateshwaran Mani — Data Professional</div>
+  </footer>
+</main>
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function () {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+  <script>
+    // mobile menu toggle
+    document.getElementById('mobileOpen').addEventListener('click', () => {
+      const m = document.getElementById('mobileMenu'); m.classList.toggle('hidden');
+    });
+    // smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const t = document.querySelector(a.getAttribute('href'));
+        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); document.getElementById('mobileMenu')?.classList.add('hidden');}
+      });
+    });
 
-        // Hide mobile menu on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', function () {
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        // Animation for project cards when they come into view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeIn');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.project-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Cyberpunk scroll reveal animation
-        function cyberpunkScrollReveal() {
-            const elements = document.querySelectorAll('.cyberpunk-scroll');
-            const windowHeight = window.innerHeight;
-            elements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < windowHeight - 60) {
-                    el.classList.add('visible');
-                }
-            });
-        }
-        window.addEventListener('scroll', cyberpunkScrollReveal);
-        window.addEventListener('load', cyberpunkScrollReveal);
-
-        /**
-         * Simple animated tech lines background (black & white)
-         * No dependencies, pure Canvas
-         */
-        (function(){
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            document.getElementById('tech-bg').appendChild(canvas);
-
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            resize();
-            window.addEventListener('resize', resize);
-
-            const lines = [];
-            const lineCount = 32;
-            for (let i = 0; i < lineCount; i++) {
-                lines.push({
-                    x: Math.random() * window.innerWidth,
-                    y: Math.random() * window.innerHeight,
-                    len: 80 + Math.random() * 180,
-                    angle: Math.random() * Math.PI * 2,
-                    speed: 0.2 + Math.random() * 0.5,
-                    width: 1 + Math.random() * 2,
-                    opacity: 0.5 + Math.random() * 0.5
-                });
-            }
-
-            function animate() {
-                ctx.clearRect(0,0,canvas.width,canvas.height);
-                for(const l of lines) {
-                    ctx.save();
-                    ctx.globalAlpha = l.opacity;
-                    ctx.strokeStyle = "#fff";
-                    ctx.lineWidth = l.width;
-                    ctx.shadowColor = "#fff";
-                    ctx.shadowBlur = 8;
-                    ctx.beginPath();
-                    ctx.moveTo(l.x, l.y);
-                    ctx.lineTo(
-                        l.x + Math.cos(l.angle) * l.len,
-                        l.y + Math.sin(l.angle) * l.len
-                    );
-                    ctx.stroke();
-                    ctx.restore();
-
-                    // Animate
-                    l.x += Math.cos(l.angle) * l.speed;
-                    l.y += Math.sin(l.angle) * l.speed;
-
-                    // Wrap around screen
-                    if(l.x < -l.len) l.x = canvas.width + l.len;
-                    if(l.x > canvas.width + l.len) l.x = -l.len;
-                    if(l.y < -l.len) l.y = canvas.height + l.len;
-                    if(l.y > canvas.height + l.len) l.y = -l.len;
-                }
-                requestAnimationFrame(animate);
-            }
-            animate();
-        })();
-    </script>
+    // init AOS
+    document.addEventListener('DOMContentLoaded', function(){ AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true }); });
+  </script>
 </body>
 </html>
