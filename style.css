@@ -12,6 +12,11 @@
     
     --radius: 12px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Breakpoints */
+    --tablet: 768px;
+    --laptop: 1024px;
+    --desktop: 1200px;
 }
 
 * {
@@ -54,6 +59,308 @@ section {
 /* Typography Utilities */
 .text-uppercase { text-transform: uppercase; letter-spacing: 0.1em; }
 .font-bold { font-weight: 800; }
+.bg-white { background-color: var(--white) !important; }
+.bg-primary { background-color: var(--bg-primary) !important; }
+.bg-secondary { background-color: var(--bg-secondary) !important; }
+
+/* Navigation Refinement */
+.nav-logo {
+    color: var(--text-heading);
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-heading);
+    cursor: pointer;
+}
+
+.nav-cta {
+    padding: 0.5rem 1.5rem !important;
+    color: white !important;
+}
+
+/* Hero Refinement */
+.hero-container {
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.hero-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: left;
+}
+
+.hero-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--action-color);
+    flex-shrink: 0;
+}
+
+.hero-title-area {
+    flex: 1;
+    min-width: 250px;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem) !important;
+    margin: 0 !important;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0 !important;
+    line-height: 1.4;
+}
+
+.hero-bio {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.bio-label {
+    font-size: 0.8rem;
+    color: var(--action-color);
+    margin-bottom: 1rem;
+}
+
+.bio-text {
+    font-size: 1rem;
+    color: var(--text-heading);
+    line-height: 1.7;
+    margin: 0 !important;
+}
+
+.hero-contact-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hero-social-link {
+    font-size: 1.5rem;
+    color: var(--text-heading);
+}
+
+.resume-link {
+    color: var(--action-color) !important;
+}
+
+.hero-email {
+    font-size: 0.9rem;
+    color: var(--text-body);
+}
+
+/* Section Common */
+.edu-card {
+    background-color: var(--bg-primary) !important;
+    border: 1px solid var(--bg-secondary) !important;
+}
+
+.edu-date {
+    color: var(--action-color);
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.edu-degree {
+    margin-bottom: 0.25rem;
+    font-size: 1.2rem;
+}
+
+.edu-institution {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.edu-desc {
+    font-size: 0.9rem;
+}
+
+.quote-card {
+    background-color: var(--bg-primary) !important;
+    border: 1px dashed var(--action-color) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 2.5rem !important;
+}
+
+.quote-icon {
+    color: var(--action-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.quote-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text-heading);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.quote-author {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--action-color);
+    font-weight: 700;
+}
+
+.skill-section-title {
+    color: var(--white);
+    margin-bottom: 4rem;
+}
+
+.skill-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+}
+
+.exp-card {
+    background-color: var(--white) !important;
+    border: 1px solid var(--bg-secondary) !important;
+}
+
+.exp-list {
+    padding-left: 1.2rem;
+    font-size: 0.9rem;
+}
+
+.github-card-link {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed var(--action-color) !important;
+    background: transparent !important;
+    text-decoration: none;
+    min-height: 15rem;
+    transition: var(--transition);
+}
+
+.github-icon {
+    font-size: 3rem;
+    color: var(--action-color);
+    margin-bottom: 1rem;
+}
+
+.github-title {
+    color: var(--text-heading);
+}
+
+.github-desc {
+    font-size: 0.8rem;
+    text-align: center;
+    color: var(--text-body);
+}
+
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.cert-card {
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--bg-secondary);
+}
+
+.cert-org {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--action-color);
+}
+
+.additional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.additional-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius);
+}
+
+.strength-list {
+    font-size: 0.9rem;
+    columns: 2;
+    padding-left: 1.2rem;
+}
+
+.interest-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.footer-links {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.footer-email-link {
+    font-weight: 800;
+    color: var(--text-heading);
+    font-size: clamp(1.1rem, 4vw, 2.2rem);
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.footer-icon {
+    font-size: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.chat-title {
+    font-size: 0.8rem;
+}
+
+.chat-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-send-btn {
+    background: var(--action-color);
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Buttons */
 .btn {
@@ -96,7 +403,7 @@ section {
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .nav-links a {
@@ -448,29 +755,71 @@ section {
     transform: translateY(-2px);
 }
 
-/* Responsive */
+/* Responsive Refinements */
+@media (max-width: 1024px) {
+    .container { max-width: 950px; }
+    .hero-container { max-width: 750px; }
+}
+
 @media (max-width: 900px) {
     section { padding: 4rem 0; }
     .about-content { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-header { gap: 1.5rem; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .container { padding: 0 1.5rem; }
+    .hero-header { flex-direction: column; text-align: center; }
+    .hero-title-area { text-align: center; }
+    .hero-image { width: 120px; height: 120px; }
+    .hero-title { font-size: 2.8rem !important; }
+    .strength-list { columns: 1; }
+    .nav-links { gap: 1rem; }
+}
+
+@media (max-width: 992px) {
     .nav-toggle { display: block !important; }
-    .nav-links { display: none; }
-    .nav-links.active {
-        display: flex;
+    .nav-links { 
+        display: none;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
         background: var(--bg-primary);
         flex-direction: column;
-        padding: 1rem;
+        padding: 1.5rem;
         border-bottom: 1px solid var(--bg-secondary);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        gap: 1.5rem;
     }
+    
+    .nav-links.active {
+        display: flex;
+    }
+}
+
+@media (max-width: 600px) {
+    
+    .hero-title { font-size: 2.2rem !important; }
+    .hero-subtitle { font-size: 1rem !important; }
+    .hero-bio { padding: 1.5rem; }
+    .section-title { font-size: 1.8rem; margin-bottom: 2rem; }
     .chat-window {
-        width: calc(100vw - 3rem);
-        right: 1.5rem;
+        width: calc(100vw - 2rem);
+        right: 1rem;
+        bottom: 5.5rem;
+        height: 70vh;
     }
+    .ai-bubble {
+        width: 55px;
+        height: 55px;
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero-title { font-size: 1.8rem !important; }
+    .hero-contact-links { gap: 1rem; }
+    .hero-social-link { font-size: 1.2rem; }
+    .hero-email { font-size: 0.8rem; }
 }
