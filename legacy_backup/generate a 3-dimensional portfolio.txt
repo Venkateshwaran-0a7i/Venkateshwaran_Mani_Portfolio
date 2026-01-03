@@ -1,0 +1,66 @@
+generate a 3-dimensional portfolio with high graphics elements and 3D transaction the colour combination of red and white elements, black and gray background    " 
+
+VENKATESHWARAN MANI 
+JOB TITLE - DATA SCIENTIST
+
+ Data Analytics | Data Scientist | HR Analytics | Business Analytics | BI Developer
+ Analytical and results-driven Data Analyst with a strong foundation in Data Analysis, SQL, Excel, and BI tools such as
+ Power BI and Tableau for end-to-end data handling-from cleaning to visualization. 
+venkateshwaran0720@gmail.com | +91 9655724769 | 
+GitHub - https://github.com/Venkateshwaran-0a7i
+Linked in - www.linkedin.com/in/venkateshwaran-mani-9973322a7
+ Madurai, Tamil Nadu-625527, India 
+SUMMARY 
+Analytical and results-driven Data Analyst with a strong foundation in Data Analysis, SQL, Excel, and
+ BI tools such as Power Bl and Tableau for end-to-end data handling -from cleaning to visualization.
+ skilled in statistical analysis, delivering actionable insights via dashboards, and collaborating with
+ stakeholders. Completed multiple real-world projects and internships that enhanced decision speed and
+ operational efficiency. Adaptable team player with strong communication and critical thinking skills,
+ passionate about using data to drive business decisions .
+ WORK
+ EXPERIENCE 
+Data Science intern, Corizo Edutech 
+India 
+Feb 2025 -Mar 2025 
+Executed real-time projects in EDA, data preprocessing and model optimization, enhancing data
+ analysis skills. 
+Boosted ML model accuracy by 20% through hyperparameter tuning and feature selection,
+ showcasing critical thinking and analytical abilities. 
+Developed Power Bl dashboards, reducing data analysis time by 30%, demonstrating expertise in
+ data visualization. 
+EDUCATION 
+Bachelor of Technology in Artificial Intelligence and Data Science,
+ Bharath Niketan Engineering College Theni, India 
+Higher Secondary in Computer Science,
+ PKN Hr. Sec. School Tirumangalam, India 
+NOV 2022- MAY 2026 
+JUL2020 - MAR 2022
+ SKILLS 
+Data Analysis: SQL, Excel, Power BI, Tableau, Data Visualization, Data Cleaning, Statistical Analysis,
+ Communication Skills, Critical Thinking, Business Metrics Application, GCP, ETL Processes, Data
+ Security, Compliance, DAX, Real-time Project Execution, Cloud Technologies, Query, Data
+ Manipulation, Data Aggregation, Google Sheets, Data Models, Analytics, Pivot
+ Programming and Tools: Python (Pandas, NumPy, Scikit-learn), GridSearchCV, EDA, Predictive
+ Modeling, Feature Engineering, R, Model Optimization, Hyperparameter Tuning
+ Soft Skills: Communication, Critical Thinking, Problem Solving, Process Mapping, Onboarding HR,
+ Data Storytelling, Cross-functional Teams, Business Acumen, Collaboration, Presentation, Maintenance
+ and Visualization of Data, Analytical Thinking, Adaptability, Responsibilities, Create, Design
+ Other Skills and Concepts: Dashboard, AI-Driven Insights, People Insight, Statistical Analysis, Datasets,
+ Unstructured Data, Validation, Data Mining, Decision-Making Support, Reporting Tools, Programming,
+ Machine Learning, Source Management, Drive, Report Automation
+ Languages: Tamil, English 
+PROJECTS 
+Semiconductor Yield Prediction
+ Developed classification models to predict manufacturing outcomes
+ Applied feature engineering, PCA, and GridSearchCV for optimization - https://github.com/Venkateshwaran-0a7i/semiconductor-yield-prediction
+
+ Anthropometric Data Analysis
+ Cleanedandanalyzedbody measurement data using NumPy and Pandas
+ Visualized BMI and trends; performed statistical correlation analysis - https://github.com/Venkateshwaran-0a7i/gender-body-analysis
+
+Zepto Inventory Analysis – SQL
+Analyzed Zepto’s retail inventory to assess product performance, stock levels, and pricing using SQL. Cleaned and explored data to extract insights on discounts, stock status, and price per gram. Provided recommendations to optimize revenue, inventory turnover, and pricing strategies. - https://github.com/Venkateshwaran-0a7i/Zepto-Inventory-analysis-SQL
+
+for more github- https://github.com/Venkateshwaran-0a7i
+
+ "  
