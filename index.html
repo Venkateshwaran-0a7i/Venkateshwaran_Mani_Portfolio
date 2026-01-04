@@ -245,11 +245,15 @@
     <div class="ai-assistant">
         <div class="chat-window" id="chatWindow">
             <div class="chat-header">
-                <span class="text-uppercase font-bold chat-title">VM AI Assistant</span>
+                <span class="text-uppercase font-bold chat-title">L.U.C.Y | Intelligence Agent</span>
                 <button id="closeChat" class="chat-close-btn"><i class="fas fa-times"></i></button>
             </div>
+            <div class="sync-status">
+                <div class="sync-dot"></div>
+                <span class="sync-text" style="font-size: 0.65rem;">L.U.C.Y: Auto-Syncing GitHub Pulse...</span>
+            </div>
             <div class="chat-messages" id="chatMessages">
-                <div class="message bot-message">Hello! I'm Venkateshwaran's AI assistant. I can guide you through his skills, projects, and experience. What would you like to know?</div>
+                <!-- Initial message manually handled in JS to match node structure -->
             </div>
             <div class="quick-actions">
                 <button class="quick-btn" onclick="askAI('What are your core skills?')">Core Skills</button>
@@ -297,49 +301,247 @@
         const sendMessage = document.getElementById('sendMessage');
         const chatMessages = document.getElementById('chatMessages');
 
-        const knowledgeBase = {
-            "core skills": "Venkateshwaran is proficient in AI & ML (Supervised/Unsupervised Learning), Deep Learning (CNNs, RNNs), Data Engineering (ETL, Airflow, Scraping), and Data Analytics (Power BI, Tableau, SQL).",
-            "ai projects": "His key projects include a Semiconductor Yield Prediction model (using feature engineering and GridSearchCV) and an Anthropometric Data Analysis project using NumPy and Pandas.",
-            "academic": "He is currently pursuing a B.Tech in AI & Data Science at Bharath Niketan Engineering College (Anna University) with an aggregate of 82%.",
-            "interned": "He has completed internships as a Data Science Intern at Bharat Intern, and Finance & HR Internships at Corizo Edutech / Wipro DICE.",
-            "experience": "He has practical experience in EDA, model optimization, Power BI dashboarding, and financial reporting.",
-            "contact": "You can reach him at venkateshwaran0720@gmail.com or call him at +91 9655724769.",
-            "github": "You can view his code on GitHub: github.com/Venkateshwaran-0a7i",
-            "hello": "Hi there! How can I help you explore Venkateshwaran's professional profile today?",
-            "hi": "Hello! I'm here to help you learn about Venkateshwaran's skills and experience. Ask me anything!",
-            "default": "That's a great question! While I'm still learning, I can tell you about his AI/ML skills, his B.Tech in Data Science (82% aggregate), or his internships at Bharat Intern. Which one interests you?"
+        const agentSnapshot = {
+            "latestUpdate": "2026-01-04",
+            "activeProject": "Venkateshwaran_Mani_Portfolio",
+            "activeProjectUrl": "https://github.com/Venkateshwaran-0a7i/Venkateshwaran_Mani_Portfolio",
+            "activeDescription": "Focused on universal device compatibility and responsive design refinements. Latest commit: 'update compactability for all device'.",
+            "technologies": "HTML (81.5%), JavaScript (9.7%), CSS (8.8%)"
         };
+
+        // Self-Learning Memory & Dynamic Pulse
+        let dynamicRepos = [];
+        let botMemory = JSON.parse(localStorage.getItem('lucy_memory')) || {
+            interests: {},
+            lastVisit: new Date().toISOString(),
+            accuracyFeedback: []
+        };
+
+        async function fetchGitHubPulse() {
+            const syncDot = document.querySelector('.sync-dot');
+            const syncText = document.querySelector('.sync-text');
+            try {
+                const response = await fetch('https://api.github.com/users/Venkateshwaran-0a7i/repos?sort=updated');
+                const repos = await response.json();
+                dynamicRepos = repos.map(repo => ({
+                    name: repo.name.replace(/-/g, ' '),
+                    description: repo.description,
+                    url: repo.html_url,
+                    updated: new Date(repo.updated_at).toLocaleDateString(),
+                    language: repo.language
+                }));
+                if (syncText) syncText.innerText = "GitHub Live: Pulse Synced";
+                if (syncDot) syncDot.style.background = "#238636";
+            } catch (error) {
+                console.error("Pulse Sync Failed:", error);
+                if (syncText) syncText.innerText = "GitHub Mode: Local Cache";
+                if (syncDot) syncDot.style.background = "#da3633"; // Error Red
+            }
+        }
+        fetchGitHubPulse();
+
+        const knowledgeBase = {
+            "about": "Venkateshwaran Mani is a technical professional specializing in Artificial Intelligence and Data Science. From a young age (born October 7, 2004), he has been driven by solving complex problems through technology. He focuses on building intelligent systems, data engineering pipelines, and analytical dashboards with a focus on real-world impact and automated scalability.",
+            "dob": "Venkateshwaran was born on October 7, 2004.",
+            "how are you": "I am operating at peak efficiency, thank you for asking! I'm here to help you explore Venkateshwaran's professional profile and technical skills. How can I assist you today?",
+            "impact": "Venkateshwaran drives real-world impact through technical optimization. During his Data Science internship, he improved ML model accuracy by 20% through feature selection and reduced dashboard processing time by 30% using Power BI. He builds systems designed for efficiency and clarity.",
+            "stack": "His full technical stack includes Python, R, SQL, and NoSQL. For AI/ML, he uses TensorFlow, Keras, Scikit-learn, and BeautifulSoup/Selenium/Scrapy for data ingestion. For Engineering/Backend, he utilizes FastAPI, Apache Airflow (basic), and GCP (Compute Engine, Storage).",
+            "data engineer": "As a Data Engineer, Venkateshwaran excels in building ETL pipelines, data warehousing, and workflow automation. He is proficient in API integration (REST), SQL/NoSQL management, and basic Apache Airflow for data orchestration.",
+            "ml engineer": "For Machine Learning Scientist or AI Engineer roles, he brings specialized knowledge in Deep Learning (CNNs, RNNs), model optimization, and deployment pipelines, with practical experience in fine-tuning models for high accuracy.",
+            "data scientist": "As a Data Scientist, he excels at translating raw data into actionable insights using advanced predictive modeling, feature engineering (PCA, GridSearchCV), and statistical analysis (A/B testing, EDA).",
+            "bi analyst": "He is highly qualified for Business Intelligence Analyst roles, with expert-level skills in Power BI (DAX), Tableau, and building interactive dashboards that drive 30% faster decision-making.",
+            "backend developer": "In Backend roles, he utilizes FastAPI to develop robust CRUD APIs, implementing authentication and ensuring smooth model deployment and integration.",
+            "automation expert": "As an Automation Expert, he leverages Selenium, Scrapy, and BeautifulSoup to build sophisticated web scraping systems and automated data collection workflows.",
+            "core skills": "Technical competencies include Artificial Intelligence, Machine Learning (Supervised/Unsupervised), Deep Learning (CNNs, RNNs), and Data Engineering (ETL, Airflow, SQL). Analytical expertise includes Power BI and Tableau.",
+            "latest project": `The most recently active project is '${agentSnapshot.activeProject}'. Description: ${agentSnapshot.activeDescription} Technologies: ${agentSnapshot.technologies}. Repository: ${agentSnapshot.activeProjectUrl}`,
+            "current work": `As of the last snapshot on ${agentSnapshot.latestUpdate}, the primary focus is '${agentSnapshot.activeProject}', specifically ${agentSnapshot.activeDescription}`,
+            "academic": "Candidate is pursuing a B.Tech in AI and Data Science at Bharath Niketan Engineering College, Anna University. Current academic aggregate stands at 82%.",
+            "internships": "Completed professional internships: Data Science at Bharat Intern (Feb-Mar 2025); Finance and HR at Corizo Edutech / Wipro DICE. Note: His DS internship delivered a 20% accuracy boost in models and 30% efficiency gain in BI reporting.",
+            "contact": "You can reach Venkateshwaran via email at venkateshwaran0720@gmail.com, LinkedIn (linked above), or via WhatsApp/Mobile at +91 9655724769. How would you like to connect?",
+            "github": "Full technical history and repository access: https://github.com/Venkateshwaran-0a7i",
+            "github_profile": "You can explore his professional profile and all repositories directly on GitHub: https://github.com/Venkateshwaran-0a7i",
+            "survey": "Interaction concluding. Requesting feedback via external survey: https://forms.gle/1Js2UirHeCCpGZ4e9 (Optional, <1 minute).",
+            "missing": "I don't have that specific record, but as a technical expert assistant, I can confirm his proficiency in Data Engineering, AI Pipelines, or BI Analytics. Would you like to see his role-suitability for a specific position?",
+            "deep learning": "Venkateshwaran utilizes Deep Learning architectures like CNNs for image classification and RNNs/LSTMs for sequential data analysis. He applies model optimization techniques such as Dropout, Batch Normalization, and Hyperparameter Tuning using Keras/TensorFlow to drive superior model performance.",
+            "api": "Experience includes RESTful API development using FastAPI, integrating ML models into production environments, and managing CRUD operations with robust authentication layers.",
+            "projects_detail": {
+                "semiconductor": "The 'Semiconductor Yield Prediction' project utilized classification models to optimize production outcomes, employing PCA for dim-reduction and GridSearchCV for tuning.",
+                "anthropometric": "Analyzed BMI trends using NumPy and Pandas, conducting robust statistical correlation analysis on large body measurement datasets."
+            },
+            "recommendations": {
+                "ai": "Since we're discussing AI, would you like to see his 'Semiconductor Yield Prediction' project or his Deep Learning expertise?",
+                "data": "Based on your interest in data, should I detail his Data Engineering stack or his BI optimization results?",
+                "general": "I can also provide details on his specific project impacts or his dual-internship technical exposure. Which interests you?"
+            }
+        };
+
+        // GPT-Level Multi-Turn State Engine
+        let chatContext = {
+            lastTopic: botMemory.lastTopic || null,
+            lastPrompt: null,
+            turnCount: 0,
+            history: []
+        };
+
+        function saveMemory(topic, feedback = null) {
+            if (topic) {
+                botMemory.interests[topic] = (botMemory.interests[topic] || 0) + 1;
+                botMemory.lastTopic = topic;
+            }
+            if (feedback) botMemory.accuracyFeedback.push(feedback);
+            botMemory.lastVisit = new Date().toISOString();
+            localStorage.setItem('lucy_memory', JSON.stringify(botMemory));
+        }
 
         aiBubble.addEventListener('click', () => chatWindow.classList.toggle('active'));
         closeChat.addEventListener('click', () => chatWindow.classList.remove('active'));
 
+        function getResponse(question) {
+            const q = question.toLowerCase().trim();
+            chatContext.turnCount++;
+            chatContext.history.push(q);
+            
+            // 1. Contextual State Handling (Multi-turn GPT Logic)
+            if (chatContext.lastPrompt === "role_check" && (q === "yes" || q.includes("show") || q.includes("sure") || q.includes("ok"))) {
+                chatContext.lastPrompt = "detailed_sectors";
+                return "Excellent decision. Venkateshwaran's technical proficiency is concentrated in three high-impact sectors:\n\n1. **Data Engineering** (ETL / Apache Airflow / GCP)\n2. **AI/ML Specialist** (Deep Learning / CNNs / model deployment)\n3. **BI Analyst** (Power BI / DAX / EDA)\n\nWhich technical sector should I elaborate on for you?";
+            }
+
+            if (chatContext.lastTopic && (q === "tell me more" || q === "elaborate" || q === "details" || q === "expand")) {
+                const topicResponse = knowledgeBase[chatContext.lastTopic];
+                return topicResponse ? `Broadening perspective on ${chatContext.lastTopic}: ${topicResponse}` : "Could you specify which part you'd like me to expand upon?";
+            }
+
+            // 2. Keyword Scoring Engine (NLP Simulation)
+            const scores = {};
+            const keywordMap = {
+                "github_profile": ["github", "profile", "link", "url", "account", "handle"],
+                "contact": ["email", "linkedin", "contact", "reach", "phone", "mobile", "number", "whatsapp", "call"],
+                "suitability": ["suit", "fit", "eligible", "qualified", "hire", "job", "position", "good at", "strength", "excel", "expert"],
+                "projects_detail": ["yield", "semiconductor", "anthropometric", "bmi", "prediction", "project", "built", "made", "portfolio", "repo", "code"],
+                "deep learning": ["deep", "neural", "cnn", "rnn", "lstm", "optimization", "model"],
+                "api": ["api", "rest", "fastapi", "crud", "endpoint", "openai"],
+                "nlp": ["nlp", "text", "natural language", "chatbot", "sentiment", "nltk", "spacy"],
+                "data engineer": ["data engineer", "etl", "airflow", "pipeline", "warehousing", "sql"],
+                "ml engineer": ["ml", "machine learning", "ai", "scientist"],
+                "impact": ["impact", "result", "drive", "real world", "achievement", "boost", "improve"],
+                "stack": ["stack", "language", "framework", "library", "environment"],
+                "about": ["who", "background", "about", "venkateshwaran", "profile", "bio"],
+                "academic": ["aggregate", "academic", "college", "university", "b.tech", "study", "cgpa"]
+            };
+
+            for (const [key, keywords] of Object.entries(keywordMap)) {
+                scores[key] = keywords.reduce((score, word) => q.includes(word) ? score + 1 : score, 0);
+            }
+
+            // Accuracy Tuning: Specific Weight Multipliers
+            scores["github_profile"] *= (q.includes("link") || q.includes("profile")) ? 2.5 : 1.0;
+            scores["contact"] *= (q.includes("number") || q.includes("phone") || q.includes("mobile")) ? 2.5 : 1.0;
+            scores["projects_detail"] *= 1.2;
+            scores["nlp"] *= 1.3;
+
+            const bestMatch = Object.entries(scores).reduce((a, b) => b[1] > a[1] ? b : a);
+
+            // 3. Response Selection based on Scores
+            if (bestMatch[1] > 0) {
+                chatContext.lastTopic = bestMatch[0];
+                saveMemory(bestMatch[0]);
+                
+                if (bestMatch[0] === "suitability") {
+                    chatContext.lastPrompt = "role_check";
+                    return "I've analyzed his technical snapshot against current industry standards. He demonstrates high proficiency for Data Engineering, AI/ML, and BI roles. Would you like a detailed breakdown of his suitability metrics?";
+                }
+
+                if (bestMatch[0] === "github_profile") {
+                    return knowledgeBase.github_profile;
+                }
+
+                if (bestMatch[0] === "contact") {
+                    return knowledgeBase.contact;
+                }
+
+                if (bestMatch[0] === "projects_detail" || q.includes("is that all") || q.includes("anything else")) {
+                    if (dynamicRepos.length > 0) {
+                        let repoList = dynamicRepos.slice(0, 5).map(r => `• **${r.name}**: ${r.description || 'Professional project'} (Synced: ${r.updated})`).join('\n');
+                        return `I've synced with his live GitHub pulse. Here are his most recently active repositories:\n\n${repoList}\n\nWhich one should I provide technical stage details for?`;
+                    }
+                    return "His portfolio includes advanced projects like 'Semiconductor Yield Prediction' (ML) and 'Market Analytics' (Sentiment). I recommend focusing on his Deep Learning or SQL Automation work.";
+                }
+
+                if (bestMatch[0] === "nlp") {
+                    return "His NLP expertise is primary. Highlights include:\n1. **nlp-chatbot-python**: Intent-based classification with TF-IDF.\n2. **Market_Analytics**: Sentiment Analysis for customer reviews.\nWould you like the 'stage status' for his NLP development?";
+                }
+
+                let baseResponse = knowledgeBase[bestMatch[0]] || "I possess general records on this topic. Should I attempt a live GitHub query for more specific details?";
+                return baseResponse;
+            }
+
+            // 4. Memory-Aware Fallback
+            if (botMemory.interests && Object.keys(botMemory.interests).length > 0) {
+                const topInterest = Object.entries(botMemory.interests).reduce((a, b) => b[1] > a[1] ? b : a)[0];
+                return `I'm processing that. Since you were previously interested in **${topInterest}**, would you like more updated insights from his GitHub on that area while I refine my accuracy?`;
+            }
+
+            return knowledgeBase["missing"];
+        }
+
         function askAI(question) {
             appendMessage(question, 'user');
+            
+            const typing = document.createElement('div');
+            typing.className = 'typing-indicator';
+            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            chatMessages.appendChild(typing);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
             setTimeout(() => {
+                chatMessages.removeChild(typing);
                 const response = getResponse(question);
                 appendMessage(response, 'bot');
-            }, 600);
+                
+                // Accuracy Loop (Occasional)
+                if (Math.random() > 0.7) {
+                    const fb = document.createElement('div');
+                    fb.className = 'feedback-node';
+                    fb.innerHTML = '<button class="feedback-btn" onclick="captureFeedback(\'accurate\')">Accurate</button><button class="feedback-btn" onclick="captureFeedback(\'needs_refinement\')">Refine Me</button>';
+                    chatMessages.appendChild(fb);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            }, 1200);
         }
 
-        function getResponse(question) {
-            const q = question.toLowerCase();
-            if (q.includes('skill')) return knowledgeBase["core skills"];
-            if (q.includes('project')) return knowledgeBase["ai projects"];
-            if (q.includes('academic') || q.includes('aggregate') || q.includes('college')) return knowledgeBase["academic"];
-            if (q.includes('intern') || q.includes('work') || q.includes('experience')) return knowledgeBase["experience"];
-            if (q.includes('contact') || q.includes('email') || q.includes('phone')) return knowledgeBase["contact"];
-            if (q.includes('github') || q.includes('code')) return knowledgeBase["github"];
-            if (q.includes('hello') || q.includes('hi')) return knowledgeBase["hello"];
-            return knowledgeBase["default"];
-        }
+        window.captureFeedback = function(status) {
+            saveMemory(null, { status, timestamp: new Date().toISOString() });
+            const fbNodes = document.querySelectorAll('.feedback-node');
+            fbNodes.forEach(n => n.innerHTML = `<span style="font-size: 0.7rem; color: var(--text-muted);">Memory Updated: ${status === 'accurate' ? 'Confirmed' : 'Learning'}</span>`);
+        };
 
         function appendMessage(text, sender) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `message ${sender}-message`;
-            msgDiv.textContent = text;
-            chatMessages.appendChild(msgDiv);
+            const node = document.createElement('div');
+            node.className = `message-node ${sender}-node`;
+            
+            const info = document.createElement('div');
+            info.className = 'message-info';
+            info.innerHTML = sender === 'bot' ? '<i class="fas fa-robot"></i> L.U.C.Y' : '<i class="fas fa-user-circle"></i> VISITOR';
+            
+            const msg = document.createElement('div');
+            msg.className = 'message';
+            
+            // Linkifier
+            const urlRegex = /(https?:\/\/[^\s]+?)(?=[.,;:]?\s|$)/g;
+            const linkedText = text.replace(urlRegex, (url) => {
+                return `<a href="${url}" target="_blank" style="color: inherit; text-decoration: underline; font-weight: bold;">${url}</a>`;
+            });
+            
+            msg.innerHTML = linkedText;
+            node.appendChild(info);
+            node.appendChild(msg);
+            chatMessages.appendChild(node);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
+
+        // Initial Greeting Node
+        appendMessage("Greetings. Advanced Intelligence Mode: Active. I am L.U.C.Y (Logical, Updated, Contextual, You). I provide technical, snapshot-based information regarding Venkateshwaran Mani's professional work. How may I assist you?", 'bot');
 
         sendMessage.addEventListener('click', () => {
             const q = chatInput.value.trim();
