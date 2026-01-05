@@ -1,108 +1,91 @@
-# 🚀 Venkateshwaran Mani — Professional Portfolio
+# 📊 Venkateshwaran Mani – Data Portfolio with AI Assistant
 
-This repository contains my **personal portfolio website**, built to showcase my technical skills, projects, and engineering mindset.  
-The focus is on **clarity, structure, and real-world implementation**, not gimmicks or over-engineering.
+This repository hosts my **personal data portfolio**, showcasing hands-on projects across  
+**Data Analysis, Data Analytics, and Applied Data Science**, enhanced with an **interactive AI assistant**.
 
-This portfolio is intended for **recruiters, hiring managers, and technical reviewers**.
-
----
-
-## 🌐 Live Demo
-
-🔗 **Portfolio Website:** *(Add deployed link — Netlify / Vercel / GitHub Pages)*
-
-> Deployed versions are preferred by recruiters.  
-> If this link is missing, you are leaving points on the table.
+🌐 **Live Portfolio**  
+https://venkateshwaran-0a7i.github.io/Venkateshwaran_Mani_Portfolio
 
 ---
 
-## 🎯 Purpose of This Portfolio
+## 👋 About This Portfolio
 
-This project demonstrates my ability to:
+This portfolio demonstrates how I work with data **end to end** — from raw datasets to insights —  
+and how I communicate those insights clearly using technology.
 
-- Translate requirements into a clean UI
-- Structure frontend code logically
-- Build reusable components
-- Maintain readable, maintainable code
-- Present projects and credentials professionally
+To improve usability, I integrated a **personal AI assistant** that helps visitors:
+- Understand project objectives and workflows  
+- Navigate datasets, tools, and dashboards  
+- Ask questions about my skills and implementations  
 
-This is **not a tutorial project**.  
-It is a **representation of how I build and present work**.
-
----
-
-## ✨ Key Highlights
-
-✅ Clean, minimal, recruiter-friendly UI  
-📱 Fully responsive across devices  
-🧩 Modular structure (Navbar, Footer components)  
-🖼️ Visual project representation  
-📄 Integrated CV access  
-⚡ Fast load, no unnecessary dependencies  
+The AI is designed to **explain and assist**, not to fabricate results.
 
 ---
 
-## 🛠️ Technical Stack
+## 🤖 Personal AI Assistant (Key Feature)
 
-- 🌐 **HTML5** — semantic, accessible markup  
-- 🎨 **CSS3** — layout, responsiveness, visual hierarchy  
-- ⚙️ **JavaScript (ES6+)** — interactivity and component logic  
+**Purpose:**
+- Acts as a guided interface for recruiters and visitors  
+- Answers queries related to projects, tools, and outcomes  
+- Improves accessibility of technical content  
 
-> Frameworks were intentionally avoided to demonstrate **strong fundamentals**.
+**Capabilities:**
+- Project-level explanations  
+- Skill and tool clarification  
+- Portfolio navigation support  
 
----
-
-## 📂 Repository Structure
-
-/
-├── components/
-│ ├── navbar.js # Navigation component
-│ └── footer.js # Footer component
-├── legacy_backup/ # Previous versions / references
-├── hero_visual.png # Hero section asset
-├── project_chatbot.png # Project visual
-├── project_analytics.png # Project visual
-├── script.js # Main JS logic
-├── style.css # Global styles
-├── index.html # Entry point
-├── README.md
-└── Venkateshwaran Mani CV.pdf
-
-
-
-This structure reflects:
-- Separation of concerns
-- Component reusability
-- Clean organization (no random files)
+*(AI responses are grounded in portfolio content and project documentation.)*
 
 ---
 
-## 📌 Featured Projects (Overview)
+## 🛠️ Skills & Tools
 
-### 🤖 Chatbot Project
-- Focus: Conversational logic and interaction flow
-- Skills Demonstrated: JavaScript logic, UI integration
-- Outcome: Functional chatbot interface with structured responses
+### Data Analysis & Analytics
+- SQL, Excel, Google Sheets  
+- Power BI, Tableau  
+- Data Cleaning, Aggregation, KPI Analysis  
 
-### 📊 Analytics Project
-- Focus: Data-driven insights and visualization
-- Skills Demonstrated: Analytical thinking, presentation
-- Outcome: Clear visual storytelling using data
+### Programming & Data Science
+- Python (Pandas, NumPy, Scikit-learn)  
+- Exploratory Data Analysis (EDA)  
+- Feature Engineering & Predictive Modeling  
 
-> Detailed project breakdowns can be added if required for specific roles.
-
----
-
-## 🖼️ Visual Preview
-
-| Hero Section | Projects |
-|-------------|----------|
-| ![Hero](hero_visual.png) | ![Project](project_chatbot.png) |
+### Concepts
+- Statistics & Correlation Analysis  
+- Business Metrics & Decision Support  
+- Data Visualization & Storytelling  
 
 ---
 
-## 🔧 Local Setup (For Reviewers)
+## 📂 Project Highlights
 
-```bash
-git clone https://github.com/Venkateshwaran-0a7i/Venkateshwaran_Mani_Portfolio.git
-cd Venkateshwaran_Mani_Portfolio
+### 🔹 Semiconductor Yield Prediction
+- Built classification models for manufacturing outcome prediction  
+- Applied feature engineering, PCA, and GridSearchCV  
+- Focused on validation and performance improvement  
+
+### 🔹 Anthropometric Data Analysis
+- Cleaned and analyzed body measurement datasets  
+- Performed statistical correlation analysis  
+- Visualized BMI trends and insights  
+
+---
+
+## 🎯 What This Portfolio Demonstrates
+
+- Real-world data handling and analysis  
+- Clear business-focused insights  
+- Practical ML workflows (not theory-only)  
+- Ability to **communicate technical work clearly**, including via AI-assisted interfaces  
+
+---
+
+## 📫 Contact
+
+- 📧 Email: venkateshwaran0720@gmail.com  
+- 🔗 LinkedIn: https://www.linkedin.com/in/venkateshwaran-mani-a3b2b23a3  
+- 🌐 Portfolio: https://venkateshwaran-0a7i.github.io/Venkateshwaran_Mani_Portfolio  
+
+---
+
+⭐ Feedback and discussions are welcome.
