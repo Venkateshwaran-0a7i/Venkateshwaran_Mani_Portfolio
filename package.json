@@ -1,0 +1,14 @@
+{
+  "name": "venkateshwaran-mani-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Developer Portfolio for Venkateshwaran Mani",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo \"Build complete\"",
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}

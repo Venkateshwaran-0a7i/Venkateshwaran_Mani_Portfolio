@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venkateshwaran Mani | Data Scientist &amp; Analyst Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* --- Light corporate theme: clean, neutral, readable --- */
+        :root{
+            --bg: #f9fafb;        /* gray-50 */
+            --surface: #ffffff;   /* card backgrounds */
+            --text: #1f2937;      /* gray-800 */
+            --muted: #6b7280;     /* gray-500 */
+            --border: #d1d5db;    /* gray-300 */
+            --accent: #ef4444;    /* primary accent (kept) */
+        }
+
+        html, body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            scroll-behavior: smooth;
+            max-width: 100%;
+            overflow-x: hidden;
+            word-wrap: break-word;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1,h2,h3{ font-family: 'Playfair Display', serif; color: var(--text); }
+        a { color: var(--accent); }
+        a:hover { color: #c53030; }
+
+        /* Reusable components */
+        .retro-border {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.03);
+            border-radius: 8px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            transition: transform .35s ease, box-shadow .35s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+            z-index: 2;
+        }
+
+        .project-overlay {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all .28s ease;
+            background: linear-gradient(to top, rgba(17,24,39,0.8), transparent);
+        }
+        .project-card:hover .project-overlay { opacity: 1; transform: translateY(0); }
+
+        .section-title { color: var(--text); }
+
+        .typewriter { border-right: .12em solid var(--accent); color: var(--text); }
+
+        /* Buttons */
+        .btn-3d {
+            background: var(--accent);
+            color: #fff;
+            border-radius: 8px;
+            padding: .6rem 1rem;
+            box-shadow: 0 6px 0 rgba(147, 18, 18, 0.9);
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+        .btn-3d:hover { transform: translateY(-3px); box-shadow: 0 12px 20px rgba(15,23,42,0.08); }
+
+        /* Timeline / Dots */
+        .timeline-dot { background: var(--border); box-shadow: 0 4px 14px rgba(31,41,55,0.06); }
+
+        /* Robot / decorative visuals scale & neutralize color */
+        .robot-container { opacity: .95; filter: grayscale(.0); }
+        .robot * { background: #e5e7eb; border-color: #d1d5db; }
+
+        /* Tech background canvas is subtle on light bg */
+        #tech-bg { opacity: 0.12; }
+
+        /* Small UI helpers */
+        ::-webkit-scrollbar { width: 8px; background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+
+        /* Responsive tweaks */
+        @media (max-width:768px){
+            .retro-border { box-shadow: 4px 4px 0 rgba(0,0,0,0.03); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Background Canvas -->
+    <div id="tech-bg" class="fixed top-0 left-0 w-full h-full -z-10 opacity-[0.12]"></div>
+    
+    <!-- Navigation -->
+    <nav class="bg-white bg-opacity-95 backdrop-blur-sm retro-border sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="text-2xl font-bold" style="background:linear-gradient(90deg,var(--accent),#374151);-webkit-background-clip:text;background-clip:text;color:transparent;">VM</div>
+
+            <div id="desktop-menu" class="hidden md:flex space-x-6 text-gray-700">
+                <a href="#about" class="hover:text-gray-900 transition">About</a>
+                <a href="#skills" class="hover:text-gray-900 transition">Skills</a>
+                <a href="#certifications" class="hover:text-gray-900 transition">Certifications</a>
+                <a href="#projects" class="hover:text-gray-900 transition">Projects</a>
+                <a href="#education" class="hover:text-gray-900 transition">Education</a>
+                <a href="#experience" class="hover:text-gray-900 transition">Experience</a>
+                <a href="#contact" class="hover:text-gray-900 transition">Contact</a>
+            </div>
+
+            <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none" aria-label="Open menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown (single element) -->
+        <div id="mobile-menu" class="md:hidden hidden flex-col bg-white bg-opacity-95 w-full px-4 py-4 space-y-2 absolute left-0 top-full z-50">
+            <a href="#about" class="block py-2 px-2 rounded hover:bg-gray-100 hover:text-gray-900 transition">About</a>
+            <a href="#skills" class="block py-2 px-2 rounded hover:bg-gray-100 hover:text-gray-900 transition">Skills</a>
+            <a href="#certifications" class="block py-2 px-2 rounded hover:bg-gray-100 hover:text-gray-900 transition">Certifications</a>
+            <a href="#projects" class="block py-2 px-2 rounded hover:bg-gray-100 hover:text-gray-900 transition">Projects</a>
+            <a href="#education" class="block py-2 px-2 rounded hover:bg-gray-100 hover:text-gray-900 transition">Education</a>
+            <a href="#experience" class="block py-2 px-2 rounded hover:bg-gray-100 hover:text-gray-900 transition">Experience</a>
+            <a href="#contact" class="block py-2 px-2 rounded hover:bg-gray-100 hover:text-gray-900 transition">Contact</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="py-16 px-4 min-h-[80vh] flex items-center justify-center">
+        <div class="container mx-auto flex flex-col md:flex-row items-center max-w-screen-lg">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 text-gray-900">Venkateshwaran Mani</h1>
+                <div class="typewriter text-2xl md:text-3xl mb-6 font-mono">Data Scientist</div>
+                <p class="text-lg mb-8 text-gray-600">Transforming raw data into actionable business insights through statistical analysis and AI-driven techniques.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="btn-3d text-white px-6 py-3 rounded-lg transition transform hover:scale-105 text-center">Get In Touch</a>
+                    <a href="https://drive.google.com/file/d/1GIzQe1iIcy4UoQGJdrw-i4kWMHbOM5xO/view?usp=sharing" target="_blank" class="btn-3d border-2 border-red-600 text-red-600 bg-white hover:bg-red-600 hover:text-white px-6 py-3 rounded-lg transition transform hover:scale-105 flex items-center justify-center">
+                        <i class="fas fa-file-alt mr-2"></i> View Resume
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center mt-8 md:mt-0">
+                <div class="w-56 h-56 rounded-full overflow-hidden ring-2 ring-red-600 retro-border">
+                    <img src="Venkateshwaran.png" alt="Venkateshwaran Mani" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-16 retro-border my-10 mx-4 md:mx-10">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-10 text-center text-red-500">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <p class="text-lg mb-4 text-gray-700">I am Venkateshwaran Mani, an aspiring <span class="font-bold text-red-600">Data Analyst</span> and <span class="font-bold text-red-600">Junior Data Scientist</span> with a strong educational background in Artificial Intelligence and Data Science.</p>
+                    <p class="text-lg mb-4 text-gray-700">Passionate about turning complex datasets into meaningful insights, I leverage AI tools, statistical techniques, and business intelligence to enable data-driven decision-making.</p>
+                    <p class="text-lg text-gray-700">With a foundational grasp of Python, SQL, Power BI, Tableau, and Excel, I have executed real-time analytics projects, led the development of impactful dashboards, and contributed to AI-integrated HR and business workflows.</p>
+                </div>
+                <div class="md:w-1/2 bg-gray-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">Professional Summary</h3>
+                    <p class="mb-4 text-gray-600">I specialize in transforming raw data into actionable business insights through statistical analysis and AI-driven techniques. I have a foundational grasp of Python, SQL, Power BI, Tableau, and Excel.</p>
+                    <p class="mb-4 text-gray-600">I have worked on several real-world datasets to solve complex problems in manufacturing, human resources, and business analytics.</p>
+                    <p class="text-gray-600">Whether it's building an AI-powered dashboard, optimizing a machine learning model, or generating insights from unstructured data, I take pride in delivering work that is both technically sound and strategically aligned.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 retro-border my-10 mx-4 md:mx-10">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Skills & Technologies</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Technical Skills Column -->
+                <div class="space-y-8">
+                    <!-- Data Analysis -->
+                    <div class="p-6 rounded-lg retro-border">
+                        <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center"><i class="fas fa-chart-pie mr-3 text-red-500"></i>Data Analysis</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-database text-red-400"></i>SQL</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-database text-red-400"></i>NoSQL</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-file-excel text-red-400"></i>Excel</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-chart-bar text-red-400"></i>Power BI</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-chart-area text-red-400"></i>Tableau</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-paint-brush text-red-400"></i>Data Visualization</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-calculator text-red-400"></i>DAX</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-exchange-alt text-red-400"></i>ETL Processes</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fab fa-google text-red-400"></i>GCP</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fa-solid fa-sheet-plastic text-red-400"></i>Google Sheets</span>
+                        </div>
+                    </div>
+                    <!-- Programming & Tools -->
+                    <div class="p-6 rounded-lg retro-border">
+                        <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center"><i class="fas fa-code mr-3 text-red-500"></i>Programming & Tools</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fab fa-python text-red-400"></i>Python & Libraries</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fab fa-r-project text-red-400"></i>R</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-search text-red-400"></i>EDA</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-brain text-red-400"></i>Predictive Modeling</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-sliders-h text-red-400"></i>Hyperparameter Tuning</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Soft Skills & Concepts Column -->
+                <div class="space-y-8">
+                    <!-- Soft Skills -->
+                    <div class="p-6 rounded-lg retro-border">
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center">
+                        <i class="fas fa-users mr-3 text-red-500"></i> Soft Skills
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-comments text-red-400"></i>Communication</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-lightbulb text-red-400"></i>Problem Solving</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-brain text-red-400"></i>Critical Thinking</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-users text-red-400"></i>Collaboration</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-book-open text-red-400"></i>Data Storytelling</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-cogs text-red-400"></i>Adaptability</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-briefcase text-red-400"></i>Business Acumen</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-project-diagram text-red-400"></i>Process Mapping</span>
+                    </div>
+                    </div>
+                    <!-- Other Skills & Concepts -->
+                    <div class="p-6 rounded-lg retro-border">
+                        <h3 class="text-xl font-bold mb-4 text-gray-900 flex items-center"><i class="fas fa-lightbulb mr-3 text-red-500"></i>Other Skills & Concepts</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-robot text-red-400"></i>AI-Driven Insights</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-cogs text-red-400"></i>Machine Learning</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-search-plus text-red-400"></i>Data Mining</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-robot text-red-400"></i>Report Automation</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-tachometer-alt text-red-400"></i>Dashboarding</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-user-friends text-red-400"></i>People Insight</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section (grouped by department) -->
+    <section id="certifications" class="py-16 retro-border my-10 mx-4 md:mx-10">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-8 text-center text-red-500">Certifications & Training</h2>
+
+            <div class="space-y-10">
+                <!-- Data Science & Analytics -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Data Science & Analytics</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Business Analytics with Excel -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Business Analytics with Excel</h4>
+                                <p class="text-sm text-gray-500">Simplilearn SkillUp • <span class="text-gray-600">8589062</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Business analytics using Excel</p>
+                            </div>
+                        </div>
+
+                        <!-- Data Science Internship -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Data Science Internship</h4>
+                                <p class="text-sm text-gray-500">Corizo / Wipro DICE • <span class="text-gray-600">CRZ91107</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Practical experience in data science</p>
+                            </div>
+                        </div>
+
+                        <!-- Data Science Training -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Data Science Training</h4>
+                                <p class="text-sm text-gray-500">Corizo / Wipro DICE • <span class="text-gray-600">CRZ86269</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Skill development in data science</p>
+                            </div>
+                        </div>
+
+                        <!-- Introduction to Data Science -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Introduction to Data Science</h4>
+                                <p class="text-sm text-gray-500">Simplilearn SkillUp • <span class="text-gray-600">7633265</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Foundational data science concepts</p>
+                            </div>
+                        </div>
+
+                        <!-- Python Libraries for Data Science -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Python Libraries for Data Science</h4>
+                                <p class="text-sm text-gray-500">Simplilearn SkillUp • <span class="text-gray-600">8886477</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Data science tools in Python</p>
+                            </div>
+                        </div>
+
+                        <!-- Introduction to Tableau -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-chart-area"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Introduction to Tableau</h4>
+                                <p class="text-sm text-gray-500">Simplilearn SkillUp • <span class="text-gray-600">8595275</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Data visualization basics</p>
+                            </div>
+                        </div>
+
+                        <!-- Power BI for Beginners -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Power BI for Beginners</h4>
+                                <p class="text-sm text-gray-500">Simplilearn SkillUp • <span class="text-gray-600">8578871</span></p>
+                                <p class="mt-2 text-sm text-gray-600">BI dashboard creation</p>
+                            </div>
+                        </div>
+
+                        <!-- Microsoft Excel – Coursera -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Microsoft Excel – Coursera</h4>
+                                <p class="text-sm text-gray-500">Microsoft / Coursera • <span class="text-gray-600">51K3XN0ZJSA9</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Data preparation using Excel</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programming & Development -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Programming & Development</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Full-Stack Development 101 -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Full-Stack Development 101</h4>
+                                <p class="text-sm text-gray-500">Simplilearn SkillUp • <span class="text-gray-600">7039678</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Intro to full-stack development</p>
+                            </div>
+                        </div>
+
+                        <!-- Java Programming for Beginners -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fab fa-java"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Java Programming for Beginners</h4>
+                                <p class="text-sm text-gray-500">Simplilearn SkillUp • <span class="text-gray-600">7348632</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Programming fundamentals in Java</p>
+                            </div>
+                        </div>
+
+                        <!-- Programming with Python 3.X -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Programming with Python 3.X</h4>
+                                <p class="text-sm text-gray-500">Simplilearn SkillUp • <span class="text-gray-600">7293337</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Python programming fundamentals</p>
+                            </div>
+                        </div>
+
+                        <!-- PostgreSQL: Become an SQL Developer -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">PostgreSQL: Become an SQL Developer</h4>
+                                <p class="text-sm text-gray-500">Simplilearn SkillUp • <span class="text-gray-600">8514489</span></p>
+                                <p class="mt-2 text-sm text-gray-600">SQL development skills</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI & Emerging Tech -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">AI & Emerging Tech</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Generative AI in Action -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Generative AI in Action</h4>
+                                <p class="text-sm text-gray-500">IBM SkillsBuild • <span class="text-gray-600">PLAN-9E14CB5C4540</span></p>
+                                <p class="mt-2 text-sm text-gray-600">Applied generative AI skills</p>
+                            </div>
+                        </div>
+
+                        <!-- Generative AI (Credly) -->
+                        <div class="p-5 rounded-lg retro-border flex items-start gap-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md text-red-500 text-xl">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Generative AI in Action (Credly)</h4>
+                                <p class="text-sm text-gray-500">IBM SkillsBuild • <a href="https://www.credly.com/badges/e7e2d9e8-6b90-4df8-94cf-95c710c9a16e" target="_blank" class="text-red-500 underline">Credly Badge</a></p>
+                                <p class="mt-2 text-sm text-gray-600">Verified credential in Generative AI</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 retro-border my-10 mx-4 md:mx-10">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card rounded-lg overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Semiconductor" class="w-full h-48 object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-end p-4">
+                            <div>
+                                <h3 class="font-bold text-lg text-white">Semiconductor Yield Prediction</h3>
+                                <a href="https://github.com/Venkateshwaran-0a7i/semiconductor-yield-prediction" target="_blank" class="text-red-500 hover:text-red-700 inline-flex items-center mt-2">
+                                    View on GitHub <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <ul class="list-disc pl-5 text-sm space-y-2 text-gray-800">
+                            <li>Built classification models to forecast yield outcomes in manufacturing</li>
+                            <li>Applied PCA, feature engineering, and GridSearchCV for optimization</li>
+                            <li>Enhanced predictive accuracy and supported smart factory insights</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card rounded-lg overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Anthropometric" class="w-full h-48 object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-end p-4">
+                            <div>
+                                <h3 class="font-bold text-lg text-white">Anthropometric Data Analysis</h3>
+                                <a href="https://github.com/Venkateshwaran-0a7i/gender-body-analysis" target="_blank" class="text-red-500 hover:text-red-700 inline-flex items-center mt-2">
+                                    View on GitHub <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <ul class="list-disc pl-5 text-sm space-y-2 text-gray-800">
+                            <li>Cleaned and analyzed biometric data using NumPy and Pandas</li>
+                            <li>Visualized BMI trends and performed statistical correlation analysis</li>
+                            <li>Developed health-focused applications from the insights</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card rounded-lg overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="HR Analytics" class="w-full h-48 object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-end p-4">
+                            <div>
+                                <h3 class="font-bold text-lg text-white">AI-Powered HR Analytics Dashboard</h3>
+                                <a href="#" class="text-red-500 hover:text-red-700 inline-flex items-center mt-2">
+                                    Case Study <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <ul class="list-disc pl-5 text-sm space-y-2 text-gray-800">
+                            <li>Designed BI dashboards using Power BI, reducing analysis time by 30%</li>
+                            <li>Automated HR insights such as onboarding, performance, and attrition</li>
+                            <li>Employed AI methods to simplify people analytics and HR decision-making</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="project-card rounded-lg overflow-hidden transition duration-300 md:col-span-2 lg:col-span-1">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Retail Analysis" class="w-full h-48 object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-end p-4">
+                            <div>
+                                <h3 class="font-bold text-lg text-white">Retail Inventory & Sales Analysis – Zepto</h3>
+                                <a href="https://github.com/Venkateshwaran-0a7i/Zepto-Inventory-analysis-SQL" target="_blank" class="text-red-500 hover:text-red-700 inline-flex items-center mt-2">
+                                    View on GitHub <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <ul class="list-disc pl-5 text-sm space-y-2 text-gray-800">
+                            <li>Analyzed Zepto's product and inventory data using SQL</li>
+                            <li>Identified top-value products and revenue-driving categories</li>
+                            <li>Cleaned and structured data for BI tools integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="btn-3d inline-flex items-center text-white px-6 py-3 rounded-lg transition transform hover:scale-105 border border-gray-800">
+                    Explore More Projects on GitHub <i class="fab fa-github ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 retro-border my-10 mx-4 md:mx-10">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Education</h2>
+            <div class="space-y-8">
+                <div class="border-l-4 border-gray-700 pl-6 relative">
+                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-gray-900">Bharath Niketan Engineering College</h3>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                        <h4 class="font-semibold text-gray-800">B.Tech – Artificial Intelligence and Data Science</h4>
+                        <span class="text-sm text-gray-400">2022 – 2026</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Pursuing a specialized degree in AI and Data Science, focusing on machine learning, data analytics, and intelligent systems.</p>
+                </div>
+                <div class="border-l-4 border-gray-700 pl-6 relative">
+                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-gray-900">P.K.N Higher Secondary School</h3>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                        <h4 class="font-semibold text-gray-800">High School – Computer Science</h4>
+                        <span class="text-sm text-gray-400">Graduated 2022</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Completed higher secondary education with a focus on computer science, building a strong foundation in programming and logical reasoning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 retro-border my-10 mx-4 md:mx-10">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Experience</h2>
+            <div class="space-y-8">
+                <div class="border-l-4 border-gray-700 pl-6 relative">
+                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-gray-900">Corizo Edutech</h3>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                        <h4 class="font-semibold text-gray-800">Data Science Intern</h4>
+                        <span class="text-sm text-gray-400">Feb 2025 – Mar 2025</span>
+                    </div>
+                    <ul class="list-disc pl-5 text-sm space-y-2 text-gray-800">
+                        <li>Led real-time ML projects; improved model accuracy by 20% via tuning</li>
+                        <li>Developed dashboards and extracted insights from unstructured datasets</li>
+                    </ul>
+                </div>
+                <div class="border-l-4 border-gray-700 pl-6 relative">
+                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-gray-900">Corizo Edutech</h3>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                        <h4 class="font-semibold text-gray-800">Human Resources Intern</h4>
+                        <span class="text-sm text-gray-400">Apr 2025 – May 2025</span>
+                    </div>
+                    <ul class="list-disc pl-5 text-sm space-y-2 text-gray-800">
+                        <li>Applied data analytics to streamline employee onboarding and engagement</li>
+                        <li>Delivered actionable insights for HR decision-makers using data storytelling techniques</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 retro-border my-10 mx-4 md:mx-10">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Let's Connect</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-8">
+                    <!-- Email -->
+                    <div class="border-l-4 border-gray-700 pl-6 relative">
+                        <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                        <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2"><i class="fas fa-envelope text-red-500"></i>Email</h3>
+                        <a href="mailto:venkateshwaran0720@gmail.com" class="text-gray-600 hover:text-gray-900 transition">venkateshwaran0720@gmail.com</a>
+                    </div>
+                    <!-- Phone -->
+                    <div class="border-l-4 border-gray-700 pl-6 relative">
+                        <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                        <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2"><i class="fas fa-phone text-red-500"></i>Phone</h3>
+                        <a href="tel:+919655724769" class="text-gray-600 hover:text-gray-900 transition">+91 9655724769</a>
+                    </div>
+                    <!-- LinkedIn -->
+                    <div class="border-l-4 border-gray-700 pl-6 relative">
+                        <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                        <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2"><i class="fab fa-linkedin text-red-500"></i>LinkedIn</h3>
+                        <a href="https://www.linkedin.com/in/venkateshwaran-mani-9973322a7" target="_blank" class="text-gray-600 hover:text-gray-900 transition">linkedin.com/in/venkateshwaran-mani</a>
+                    </div>
+                    <!-- GitHub -->
+                    <div class="border-l-4 border-gray-700 pl-6 relative">
+                        <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                        <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2"><i class="fab fa-github text-red-500"></i>GitHub</h3>
+                        <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="text-gray-600 hover:text-gray-900 transition">github.com/Venkateshwaran-0a7i</a>
+                    </div>
+                </div>
+                <div class="flex justify-center md:justify-end">
+                    <div class="robot-container">
+                        <div class="robot-wrapper">
+                            <div class="robot">
+                            <div class="robot-head">
+                                <div class="robot-eye"></div>
+                            </div>
+                            <div class="robot-body"></div>
+                            <div class="robot-arm left"></div>
+                            <div class="robot-arm right"></div>
+                            <div class="robot-leg left"></div>
+                            <div class="robot-leg right"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Roles Section -->
+    <section id="job-roles" class="py-16 retro-border my-10 mx-4 md:mx-10">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl font-bold mb-12 text-center text-red-500">Target Job Roles</h2>
+            <div class="space-y-8">
+                <div class="border-l-4 border-gray-700 pl-6 relative">
+                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2"><i class="fas fa-chart-line text-red-500"></i>Data Analyst</h3>
+                    <p class="text-gray-600">Analyzing data to identify trends, create reports, and support business decisions.</p>
+                </div>
+                <div class="border-l-4 border-gray-700 pl-6 relative">
+                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2"><i class="fas fa-flask text-red-500"></i>Data Scientist</h3>
+                    <p class="text-gray-600">Using machine learning and statistical modeling to build predictive models and AI solutions.</p>
+                </div>
+                <div class="border-l-4 border-gray-700 pl-6 relative">
+                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2"><i class="fas fa-briefcase text-red-500"></i>Business Analyst</h3>
+                    <p class="text-gray-600">Bridging the gap between IT and the business to improve processes and efficiency.</p>
+                </div>
+                <div class="border-l-4 border-gray-700 pl-6 relative">
+                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2"><i class="fas fa-chart-bar text-red-500"></i>BI Developer</h3>
+                    <p class="text-gray-600">Designing and developing BI solutions, dashboards, and reports for stakeholders.</p>
+                </div>
+                <div class="border-l-4 border-gray-700 pl-6 relative">
+                    <div class="absolute -left-2 top-0 w-4 h-4 rounded-full timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2"><i class="fas fa-users text-red-500"></i>HR Analytics Specialist</h3>
+                    <p class="text-gray-600">Applying data analysis techniques to human resources data to improve talent management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-2xl font-bold text-white">Venkateshwaran Mani</h2>
+                    <p class="text-gray-400">Data Professional | AI & Analytics Enthusiast</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://www.linkedin.com/in/venkateshwaran-mani-9973322a7" target="_blank" class="text-gray-300 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://github.com/Venkateshwaran-0a7i" target="_blank" class="text-gray-300 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="mailto:venkateshwaran0720@gmail.com" class="text-gray-300 hover:text-white transition">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 Venkateshwaran Mani. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Hide mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function () {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Adjust for sticky nav height
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    window.scrollTo({
+                        top: targetElement.offsetTop - navHeight - 20, // 20px buffer
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        /**
+         * Simple animated tech lines background (light theme)
+         * No dependencies, pure Canvas
+         */
+        (function(){
+            const container = document.getElementById('tech-bg');
+            if (!container) return;
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            container.appendChild(canvas);
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const lines = [];
+            const lineCount = 32;
+            for (let i = 0; i < lineCount; i++) {
+                lines.push({
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    len: 80 + Math.random() * 180,
+                    angle: Math.random() * Math.PI * 2,
+                    speed: 0.2 + Math.random() * 0.5,
+                    width: 1 + Math.random() * 2,
+                    opacity: 0.05 + Math.random() * 0.1
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ef4444';
+
+                for(const l of lines) {
+                    ctx.save();
+                    ctx.globalAlpha = l.opacity;
+                    ctx.strokeStyle = accentColor;
+                    ctx.lineWidth = l.width;
+                    ctx.shadowColor = accentColor;
+                    ctx.shadowBlur = 8;
+                    ctx.beginPath();
+                    ctx.moveTo(l.x, l.y);
+                    ctx.lineTo(
+                        l.x + Math.cos(l.angle) * l.len,
+                        l.y + Math.sin(l.angle) * l.len
+                    );
+                    ctx.stroke();
+                    ctx.restore();
+
+                    // Animate
+                    l.x += Math.cos(l.angle) * l.speed;
+                    l.y += Math.sin(l.angle) * l.speed;
+
+                    // Wrap around screen
+                    if(l.x < -l.len) l.x = canvas.width + l.len;
+                    if(l.x > canvas.width + l.len) l.x = -l.len;
+                    if(l.y < -l.len) l.y = canvas.height + l.len;
+                    if(l.y > canvas.height + l.len) l.y = -l.len;
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+    </script>
+</body>
+</html>
