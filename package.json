@@ -4,6 +4,7 @@
   "private": true,
   "description": "Developer Portfolio for Venkateshwaran Mani",
   "scripts": {
+    "dev": "npx serve .",
     "start": "npx serve .",
     "build": "echo \"Build complete\"",
     "deploy": "gh-pages -d ."
