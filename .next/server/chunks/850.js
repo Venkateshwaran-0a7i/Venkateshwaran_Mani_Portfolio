@@ -1,0 +1,1 @@
+"use strict";exports.id=850,exports.ids=[850],exports.modules={6850:(e,t,a)=>{a.r(t),a.d(t,{default:()=>o});let o=(0,a(8570).createProxy)(String.raw`D:\code\portfolio\Venkateshwaran_Mani\components\canvas\HeroBackgroundCanvas.tsx#default`)}};
