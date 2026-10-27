@@ -16,6 +16,9 @@ export function asset(path: string): string {
 export function siteUrl(): string {
   const fromEnv = (process.env.NEXT_PUBLIC_SITE_URL ?? "").replace(/\/$/, "");
   if (fromEnv) return fromEnv;
+  // Vercel injects VERCEL_URL (no protocol) on every build/runtime.
+  const vercel = (process.env.VERCEL_URL ?? "").replace(/\/$/, "");
+  if (vercel) return `https://${vercel}`;
   if (BASE_PATH) {
     return `https://venkateshwaran-0a7i.github.io${BASE_PATH}`;
   }

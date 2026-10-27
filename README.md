@@ -89,11 +89,15 @@ Copy `.env.example` → `.env.local` (or set in your host's dashboard):
 vercel
 ```
 
-- **Framework preset:** Next.js  
-- **Build command:** `npm run build:vercel` (or leave default `next build` and set `DEPLOY_TARGET=vercel`)  
-- **Output:** managed by Vercel  
-- **Env:** `NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app`  
+- **Framework preset:** Next.js (do **not** set Output Directory — leave blank)
+- **Build command:** from `vercel.json` → `npm run build:vercel` (`DEPLOY_TARGET=vercel`, no static `out/` export)
+- **Node.js:** `20.x` (`.nvmrc` + `engines`)
+- **Env (Project → Settings → Environment Variables):**
+  - `NEXT_PUBLIC_SITE_URL=https://your-app.vercel.app` (or your custom domain)
+  - Leave `NEXT_PUBLIC_BASE_PATH` **empty** (GitHub Pages only)
+  - Optional: `NEXT_PUBLIC_FORM_ENDPOINT`
 - Headers / caching: see `vercel.json`
+- Auto-detect: if `DEPLOY_TARGET` is unset, `VERCEL=1` forces vercel mode so a plain `npm run build` still works
 
 ### 2) Netlify
 

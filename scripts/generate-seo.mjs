@@ -13,8 +13,10 @@ const root = join(__dirname, "..");
 const pub = join(root, "public");
 mkdirSync(pub, { recursive: true });
 
+const vercelHost = (process.env.VERCEL_URL || "").replace(/\/$/, "");
 const base = (
   process.env.NEXT_PUBLIC_SITE_URL ||
+  (vercelHost ? `https://${vercelHost}` : "") ||
   "https://venkateshwaran-0a7i.github.io/Venkateshwaran_Mani_Portfolio"
 ).replace(/\/$/, "");
 
