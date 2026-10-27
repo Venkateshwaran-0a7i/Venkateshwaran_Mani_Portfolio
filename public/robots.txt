@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://venkateshwaran-0a7i.github.io/Venkateshwaran_Mani_Portfolio/sitemap.xml
